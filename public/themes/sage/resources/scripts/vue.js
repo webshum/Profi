@@ -1,5 +1,5 @@
 import { updateCartCount } from './cart.js';
-import { accordeon, menu } from './main.js';
+import { accordeon, menu, animScrollPage, productTab } from './main.js';
 import { createApp } from 'vue';
 import app from './app.vue';
 
@@ -9,6 +9,8 @@ import Splide from '@splidejs/splide';
 menu();
 accordeon();
 updateCartCount();
+animScrollPage();
+if (document.querySelector('.product-tab') != null) productTab();
 
 if (document.querySelector('.home-slider .splide') != null) {
     new Splide('.home-slider .splide', {

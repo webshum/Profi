@@ -152,3 +152,11 @@ function remove_description_tab( $tabs ) {
     unset( $tabs['description'] );
     return $tabs;
 }
+
+function add_module_to_script($tag, $handle, $src) {
+    if ('vue-js' === $handle) {
+        $tag = '<script type="module" src="' . esc_url($src) . '"></script>';
+    }
+    return $tag;
+}
+add_filter('script_loader_tag', 'add_module_to_script', 10, 3);

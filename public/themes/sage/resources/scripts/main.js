@@ -52,7 +52,7 @@ export function accordeon() {
 
 /* ANIMATION PAGE
 ---------------------------------------------------- */
-function animScrollPage() {
+export function animScrollPage() {
     const elems = document.querySelectorAll('.animated');
     const options = {rootMargin: '0px'}
    
@@ -67,12 +67,10 @@ function animScrollPage() {
         observer.observe(elem);
     });
 }
-   
-animScrollPage();
 
 /* TABS
 ------------------------------------ */
-function productTab() {
+export function productTab() {
     const tab = document.querySelector('.product-tab');
     const controls = tab.querySelector('.controls');
     const buttons = controls.querySelectorAll('li');
@@ -101,7 +99,3 @@ function productTab() {
         });
     });
 }   
-
-window.onload = () => {
-    productTab();
-}
