@@ -1,0 +1,109 @@
+.subscribe {
+    position: relative;
+    overflow: hidden;
+
+    .content {color: #fff;}
+    .content h2.title {
+        font-size: 60px;
+        position: relative;
+
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            right: 100%;
+            top: 0;
+            height: 5px;
+            background: #9DAAB3;
+            min-width: 1000px;
+            margin-right: 22px;
+            margin-top: 40px;
+        }
+    }
+    .content:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 50%;
+        background: $blue;
+    }
+
+    .form-subscribe:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 50%;
+        background: $gray-black;
+    }
+    .form-subscribe .button {
+        width: 100%;
+        margin-top: 30px;
+        color: #fff;
+    }
+
+    @media (max-width: 1500px) {
+        .center {
+            padding-top: 70px !important;
+            padding-bottom: 70px !important;
+        }
+
+        .content {padding-right: 100px;}
+        .content h2.title {font-size: 45px;}
+
+        .form-subscribe {padding-left: 100px;}
+    }
+
+    @media (max-width: 991px) {
+        .center {
+            grid-template-columns: 1fr;
+            padding: 0 !important;
+        }
+
+        .content {
+            padding: 100px 85px;
+            background: $blue;
+            &:after {display: none;}
+        }
+        .content h2.title {
+            font-size: 60px;
+            line-height: 1;
+            &:after {margin-right: 45px;}
+        }
+
+        .form-subscribe {
+            padding: 90px 85px 115px 85px;
+            background: $gray-black;
+            &:after {display: none;}
+        }
+
+        .button {height: 60px;}
+    }
+
+    @media (max-width: 700px) {
+        .content {
+            padding: 100px 20px 0 20px;
+        }
+
+        .content h2.title {
+            font-size: 32px;
+            line-height: 1;
+        }
+        .content h2.title + p {margin-top: 15px;}
+        .content h2.title:after {display: none;}
+
+        .form-subscribe {
+            padding: 30px 20px 100px 20px;
+            background: $blue;
+
+            .button {
+                background: $gray-black;
+            }
+        }
+    }
+}

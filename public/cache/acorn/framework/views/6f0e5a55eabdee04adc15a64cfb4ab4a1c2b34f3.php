@@ -1,0 +1,1 @@
+<?php /**PATH /Users/serhi/Sites/Profi/public/themes/sage/resources/views/partials/page-header.blade.php ENDPATH**/ ?>

@@ -1,0 +1,405 @@
+.single-product {
+    .product {
+        margin-top: 50px;
+        display: grid;
+        grid-template-columns: 550px 1fr;
+        gap: 50px;
+    }
+
+    .summary {
+        display: flex;
+        flex-direction: column;
+        width: 100% !important;
+        margin-bottom: 0 !important;
+        position: relative;
+    }
+
+    .product_title {
+        font-size: 28px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        order: -2;
+    }
+
+    .product_meta {order: -1;}
+    .sku_wrapper {
+        font-size: 18px;
+        color: #848484;
+        font-weight: 300;
+    }
+    .posted_in {display: none;}
+
+    .woocommerce-product-details__short-description {display: none;}
+
+    .group {
+        margin-left: auto;
+        margin-top: auto;
+    }
+
+    .number-input {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        input {
+            background: #F0F0F0;
+            width: 60px !important;
+            height: 50px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            outline: none;
+        }
+
+        input[type=number]::-webkit-outer-spin-button, 
+        input[type=number]::-webkit-inner-spin-button {
+            display: none;
+        }
+
+        .quantity {margin: 0 !important;}
+
+        .minus,
+        .plus {
+            position: absolute;
+            left: 100%;
+            width: 32px;
+            height: 25px;
+            background: #FAFAFA;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            user-select: none;
+
+            svg {
+                fill: none;
+                stroke: $color;
+                transition: all 0.3s;
+                transform-origin: center;
+                opacity: 0.5;
+            }
+
+            &:hover svg {opacity: 1;}
+        }
+        .minus {
+            top: 0;
+            svg {transform: rotate(-180deg);}
+        }
+        .plus {bottom: 0;}
+    }
+
+    .price {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        padding-left: 15px;
+
+        del {
+            color: #848484;
+            font-size: 30px;
+            font-weight: 600;
+            opacity: 1 !important;
+            text-decoration: none;
+            position: relative;
+            &:after {
+                content: '';
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: -5px;
+                right: -5px;
+                height: 2px;
+                background: #848484;
+            }
+        }
+
+        ins {
+            margin-left: 45px;
+            color: $color;
+            font-size: 40px;
+            font-weight: bold !important;
+            text-decoration: none;
+
+            .woocommerce-Price-currencySymbol {
+                margin-left: 45px;
+            }
+        }
+    }
+
+    .cart {
+        margin-bottom: 0 !important;
+        .button {width: 100%;}
+    }
+
+    .home-gallery {background: none;}
+}
+
+/* -------- BREADCURMBS -------- */
+.woocommerce-breadcrumb {display: none;}
+
+/* -------- ONSALE -------- */
+.onsale {
+    background: #039300 !important;
+    height: 33px;
+    padding: 0 30px !important;
+    color: #fff !important;
+    font-size: 18px !important;
+    font-weight: normal !important;
+    border-radius: 0 !important;
+}
+
+.woocommerce span.onsale {
+    top: 20px;
+    left: 25px;
+}
+
+/* -------- GALLERY -------- */
+.woocommerce-product-gallery {
+    width: 100% !important;
+    background: $gray;
+    margin-bottom: 0 !important;
+
+    .woocommerce-product-gallery__trigger {display: none;}
+
+    .woocommerce-product-gallery__image {
+        min-height: 384px;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            max-height: 350px;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
+    .flex-control-thumbs {
+        padding: 20px 53px 35px 53px !important;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+    .flex-control-thumbs li {width: 100% !important;}
+    .flex-control-thumbs li img {
+        transition: all 0.3s;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+/* -------- TABS -------- */
+.woocommerce-tabs {
+    grid-column: 1/3;
+}
+
+.product-tab {
+    margin-top: 120px;
+    position: relative;
+
+    .controls {
+        display: flex;
+        border-bottom: 1px solid #848484;
+    }
+    .controls li {
+        padding: 30px;
+        color: #848484;
+        font-family: $font3;
+        font-size: 18px;
+        font-weight: 500;
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        &:hover,
+        &.active {color: $color;}
+    }
+
+    .hero {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        height: 2px;
+        background: $color;
+        transition: all 0.3s;
+    }
+
+    .contents {
+        font-size: 18px;
+        color: $color;
+        & > div {
+            display: none;
+            padding-top: 40px;
+        }
+        & > div.show {display: block;}
+    }
+    .contents .grid {
+        display: grid;
+        grid-template-columns: 0.5fr 1fr 1fr;
+        margin-top: 40px;
+        gap: 40px;
+    }
+    .contents .grid .box {
+        background: $gray;
+        padding: 65px 25px;
+    }
+    .contents .grid .box ul {
+        display: grid;
+        grid-template-columns: 0.9fr 1fr;
+        gap: 30px;
+    }
+    .contents .grid > div:first-child {
+        grid-column: 1/3;
+        grid-row: 1/3;
+    }
+
+    .contents .grid .box:nth-child(1) {
+        font-family: $font3;
+    }
+
+    .contents .grid h3 {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 40px;
+    }
+
+    .contents .grid .box:nth-child(2) {
+        padding: 35px 45px;
+    }
+    .contents .grid .box:nth-child(2) h4 {
+        margin-bottom: 20px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .contents .grid .col {
+        display: grid;
+        grid-template-columns: 1fr 180px;
+        gap: 20px;
+
+        li {
+            display: flex;
+            align-items: center;
+        }
+        li img {
+            margin-right: 15px;
+            display: inline-block;
+        }
+        li + li {margin-top: 20px;}
+    }
+}
+
+/* -------- PRODUCT INFO -------- */
+.product-info {
+    position: relative;
+    background: $gray;
+
+    &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        bottom: 0;
+        min-width: 10000px;
+        background: $gray;
+        transform: translateX(-50%);
+        z-index: -1;
+    }
+
+    .content {
+        padding: 115px 0;
+    }
+    .content h4 {
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+    .content ul li {
+        position: relative;
+        padding-left: 15px;
+        &:after {
+            content: '';
+            display: block;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: $color;
+            position: absolute;
+            top: 11px;
+            left: 0;
+        }
+    }
+
+    .image {
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+}
+
+/* -------- PRODUCT SLIDER -------- */
+.product-slider {
+    .slide {
+        display: grid;
+        grid-template-columns: 1fr 340px;
+    }
+    .slide .image {
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+    .slide .descr {
+        padding: 50px 47px;
+        background: $gray-black;
+        color: #fff;
+
+        h3 {
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+    }
+    .slide .number {
+        font-size: 48px;
+        font-weight: bold;
+        margin-top: 25px;
+        margin-left: 10px;
+
+        span:nth-child(2) {
+            color: $gray-black;
+        }
+    } 
+
+    .splide__arrow {
+        top: inherit;
+        bottom: 25px;
+        right: 0;
+        left: inherit;
+    }
+
+    .splide__pagination {display: none;}
+}
+
+
+
+
+
+
+
+
+
