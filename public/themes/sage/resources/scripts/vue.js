@@ -55,4 +55,21 @@ if (document.querySelector('.product-slider .splide') != null) {
     }).mount();
 }
 
+if (document.querySelector('.product-tab .splide') != null) {
+    new Splide('.product-tab .splide', {
+        type: 'loop',
+        perPage: 1,
+        perMove: 1,
+        arrows: false,
+        gap: 0,
+        mediaQuery: 'min',
+        autoplay: true,
+        breakpoints: {
+            700: {
+                destroy: true
+            }
+        }
+    }).mount();
+}
+
 createApp(app).mount('#vue');

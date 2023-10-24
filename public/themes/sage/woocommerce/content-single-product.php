@@ -33,15 +33,21 @@ if ( post_password_required() ) {
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
 
-	<?php
-	/**
-	 * Hook: woocommerce_before_single_product_summary.
-	 *
-	 * @hooked woocommerce_show_product_sale_flash - 10
-	 * @hooked woocommerce_show_product_images - 20
-	 */
-	do_action( 'woocommerce_before_single_product_summary' );
-	?>
+    <div class="hidden s-700 head">
+        <?php do_action( 'woocommerce_single_product_summary' ); ?>
+    </div>
+
+    <div class="relative">
+    	<?php
+    	/**
+    	 * Hook: woocommerce_before_single_product_summary.
+    	 *
+    	 * @hooked woocommerce_show_product_sale_flash - 10
+    	 * @hooked woocommerce_show_product_images - 20
+    	 */
+    	do_action( 'woocommerce_before_single_product_summary' );
+    	?>
+     </div>
 
 	<div class="summary entry-summary">
 		<?php
@@ -78,18 +84,23 @@ if ( post_password_required() ) {
 <!-- TAB -->
 <?php if (!isArrayEmpty(get_field('tab'))) : ?>
     <div class="product-tab">
-        <ul class="controls">
-            <?php foreach(get_field('tab') as $key => $tab) : ?>
-                <li data-index="<?= $key ?>"><?= $tab['name']; ?></li>
-            <?php endforeach; ?>
-        </ul>
-
-        <div class="hero"></div>
+        <div class="splide">
+            <div class="splide__track">
+                <ul class="splide__list controls">
+                    <?php foreach(get_field('tab') as $key => $tab) : ?>
+                        <li class="splide__slide" data-index="<?= $key ?>"><?= $tab['name']; ?></li>
+                    <?php endforeach; ?>
+                    <li class="splide__slide" data-index="3">Bewertungen</li>
+                </ul>
+            </div>
+        </div>
 
         <div class="contents">
             <?php foreach(get_field('tab') as $key => $tab) : ?>
                 <div data-index="<?= $key ?>"><?= $tab['content']; ?></div>
             <?php endforeach; ?>
+
+            <div data-index="3">REVIEWS</div>
         </div>
     </div>
 <?php endif; ?>
@@ -99,40 +110,38 @@ if ( post_password_required() ) {
 <?php if(!isArrayEmpty(get_field('section_1'))) : ?>
     <?php $section = get_field('section_1'); ?>
     <div class="home-gallery py-[118px]">
-        <div class="center">
-            <?php if(!empty($section['title'])) : ?>
-                <h2 class="title text-center animated">
-                    <?= $section['title'] ?>
-                </h2>
-            <?php endif; ?>
+        <?php if(!empty($section['title'])) : ?>
+            <h2 class="title text-center animated">
+                <?= $section['title'] ?>
+            </h2>
+        <?php endif; ?>
 
-            <?php if(!empty($section['subtitle'])) : ?>
-                <h2 class="subtitle text-center animated">
-                    <?= $section['subtitle'] ?>
-                </h2>
-            <?php endif; ?>
+        <?php if(!empty($section['subtitle'])) : ?>
+            <h2 class="subtitle text-center animated">
+                <?= $section['subtitle'] ?>
+            </h2>
+        <?php endif; ?>
 
-            <?php if(!empty($section['column'])) : ?>
-                <div class="grid grid-cols-2 gap-[20px] mt-[50px]">
-                    <?php foreach($section['column'] as $column) : ?>
-                        <?php $url = (!empty($column['url'])) ? $column['url'] : '#'; ?>
-                        <a href="<?= $url ?>" class="card">
-                            <?php if(!empty($column['title'])) : ?>
-                                <div class="descr animated scale-down">
-                                    <?= $column['title'] ?>
-                                </div>
-                            <?php endif; ?>
-
-                            <?php if(!empty($column['image'])) : ?>
-                            <div class="image">
-                                <img src="<?= $column['image']['url'] ?>" alt="<?= $column['image']['alt'] ?>">
+        <?php if(!empty($section['column'])) : ?>
+            <div class="grid grid-cols-2 gap-[20px] mt-[50px]">
+                <?php foreach($section['column'] as $column) : ?>
+                    <?php $url = (!empty($column['url'])) ? $column['url'] : '#'; ?>
+                    <a href="<?= $url ?>" class="card">
+                        <?php if(!empty($column['title'])) : ?>
+                            <div class="descr animated scale-down">
+                                <?= $column['title'] ?>
                             </div>
-                            <?php endif; ?>
-                        </a>
-                    <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
-        </div>
+                        <?php endif; ?>
+
+                        <?php if(!empty($column['image'])) : ?>
+                        <div class="image">
+                            <img src="<?= $column['image']['url'] ?>" alt="<?= $column['image']['alt'] ?>">
+                        </div>
+                        <?php endif; ?>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
     </div>
 <?php endif; ?>
 <!-- // SECTION 1 -->

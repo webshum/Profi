@@ -76,26 +76,20 @@ export function productTab() {
     const buttons = controls.querySelectorAll('li');
     const contents = tab.querySelectorAll('.contents > div');
     const coordsCenter = document.querySelector('.center').getBoundingClientRect();
-    const hero = tab.querySelector('.hero')
 
     buttons[0].classList.add('active');
     contents[0].classList.add('show');
-
-    hero.style.width = `${buttons[0].offsetWidth}px`;
 
     buttons.forEach(button => {
         button.addEventListener('click', e => {
             const index = Number(e.target.dataset.index);
             const coords = e.target.getBoundingClientRect();
 
-            tab.querySelector('.active').classList.remove('active');
-            tab.querySelector('.show').classList.remove('show');
+            buttons.forEach(button => button.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('show'));
 
             e.target.classList.add('active');
             contents[index].classList.add('show');
-
-            hero.style.width = `${coords.width}px`;
-            hero.style.left = `${coords.left - coordsCenter.left}px`;
         });
     });
 }   

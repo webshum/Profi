@@ -40,6 +40,8 @@ h3.title {
     .s-700 {display: block !important;}
 }
 
+#main-wrapper {overflow: hidden;}
+
 .center {
     max-width: 1430px;
     margin: 0 auto;
@@ -90,7 +92,7 @@ h3.title {
         outline-offset: 10px !important;
         outline-color: transparent !important;
         background: none !important;
-        color: $blue;
+        color: $blue !important;
     }
 
     @media (max-width: 700px) {
