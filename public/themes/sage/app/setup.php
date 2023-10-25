@@ -16,10 +16,11 @@ use function Roots\bundle;
 add_action('wp_enqueue_scripts', function () {
     $asset_ver = env('WP_ENV') == 'production' ? '1.0.0' : time();
 
-    wp_enqueue_script( 'vue-js', get_stylesheet_directory_uri() . '/dist/scripts/vue.js', null, $asset_ver, true );
+    // wp_enqueue_script( 'vue-js', get_stylesheet_directory_uri() . '/dist/scripts/vue.js', null, $asset_ver, true );
 
-    wp_enqueue_style( 'main-css', get_stylesheet_directory_uri() . '/dist/vue.css', [], $asset_ver);
+    // wp_enqueue_style( 'main-css', get_stylesheet_directory_uri() . '/dist/vue.css', [], $asset_ver);
 
+    wp_enqueue_script( 'main', get_stylesheet_directory_uri() . '/resources/scripts/vue.js', null, $asset_ver, true );
 }, 100);
 
 /**

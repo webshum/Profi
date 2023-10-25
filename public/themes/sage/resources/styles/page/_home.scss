@@ -202,11 +202,9 @@
 
     @media (max-width: 1500px) {
         padding: 50px 0;
-    }
 
-    @media (max-width: 1300px) {
         .center {
-            grid-template-columns: 0.5fr 1fr;
+            grid-template-columns: 1fr 1fr;
         }
     }
 
@@ -335,6 +333,7 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+        overflow: hidden;
     }
 
     .card .image {
@@ -344,6 +343,7 @@
         left: 0;
         bottom: 0;
         z-index: 1;
+        transition: all 0.3s;
 
         img {
             display: block;
@@ -352,6 +352,7 @@
             object-fit: cover;
         }
     }
+    .card:hover .image {transform: scale(1.1);}
 
     .descr {
         position: relative;

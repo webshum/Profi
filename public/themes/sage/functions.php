@@ -153,6 +153,11 @@ function remove_description_tab( $tabs ) {
     return $tabs;
 }
 
+/*
+|--------------------------------------------------------------------------
+| ADD MODULE TO TAG SCRIPT
+|--------------------------------------------------------------------------
+*/
 function add_module_to_script($tag, $handle, $src) {
     if ('vue-js' === $handle) {
         $tag = '<script type="module" src="' . esc_url($src) . '"></script>';

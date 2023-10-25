@@ -21,6 +21,18 @@ h3.title {
     font-family: $font2;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font2;
+    font-weight: bold;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.subtitle {margin-top: 5px;}
+
 @media (max-width: 1500px) {
     body {font-size: 17px;}
     h2.title {font-size: 37px;}
@@ -86,6 +98,13 @@ h3.title {
     }
     &.button-white:hover {
         background: #fff !important;
+    }
+
+    &.button-gray {
+        background: #9DAAB3 !important;
+    }
+    &.button-gray:hover {
+        background: #9DAAB3 !important;
     }
 
     &:hover {
@@ -209,4 +228,20 @@ h3.title {
         transform: translateX(0);
         opacity: 1;
     }
+}
+
+.animated.scale-up {
+    transform: scale(0);
+    opacity: 1;
+}
+.animated.scale-up.show {
+    animation: scale-up 1s ease-out forwards;
+}
+
+@keyframes scale-up {
+    0% {transform: scale(0);}
+    25% {transform: scale(1.1);}
+    50% {transform: scale(0.9);}
+    75% {transform: scale(1.1);}
+    100% {transform: scale(1);}
 }

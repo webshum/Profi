@@ -82,22 +82,21 @@
             align-items: center;
             font-size: 18px;
             padding: 27px 35px;
-
-            svg {
-                stroke: $color;
-                fill: none;
-                margin-left: 13px;
-                position: relative;
-                top: 2px;
-            }
-
-            &:hover svg {
-                stroke: $akcent;
-            }
         }
         & > li > a:hover {color: $akcent;}
 
-        .drop {
+        .menu-item-has-children > a:after {
+            content: '';
+            border: solid $color;
+            border-width: 0 1.5px 1.5px 0;
+            padding: 3px;
+            transform-origin: center;
+            transform: rotate(45deg);
+            margin-left: 13px;
+        }
+        .menu-item-has-children > a:hover:after {color: $akcent;}
+
+        .sub-menu {
             display: none;
             position: absolute;
             top: 100%;
@@ -124,7 +123,7 @@
             li:last-child a {border-bottom: none;}
         }
 
-        & > li:hover > .drop {
+        & > li:hover > .sub-menu {
             display: block;
             animation: opacity-up 0.5s forwards;
         }
@@ -163,7 +162,7 @@
             width: 24px;
             height: 15px;
         }
-        & > ul .drop {
+        & > ul .sub-menu {
             display: block;
             position: static;
             background: transparent;
@@ -172,7 +171,7 @@
             padding: 0;
             animation: none !important;
         }
-        & > ul .drop a {
+        & > ul .sub-menu a {
             display: block;
             padding: 10px 0;
             font-size: 20px;

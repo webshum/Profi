@@ -11,19 +11,12 @@
         </button>
 
         <nav class="menu">
-            <ul>
-                <li><a href="#">Blog</a></li>
-                <li>
-                    <a href="#">
-                        Product
-                        <svg width="11" height="6"><use xlink:href="#arr"></use></svg>
-                    </a>
-                    <ul class="drop">
-                        <li><a href="#">Wood special oil</a></li>
-                        <li><a href="#">Wood special oil 2</a></li>
-                    </ul>
-                </li>
-            </ul>
+            {!! 
+                wp_nav_menu([
+                    'theme_location' => 'primary_navigation',
+                    'container' => ''
+                ]) 
+            !!}
 
             <a href="{{ wc_get_cart_url() }}" class="head-cart">
                 <svg width="23" height="19"><use xlink:href="#cart"></use></svg>
