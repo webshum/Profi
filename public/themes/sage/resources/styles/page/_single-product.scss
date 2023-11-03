@@ -327,7 +327,7 @@
     .controls li {
         padding: 30px;
         color: #848484;
-        font-family: $font3;
+        font-family: $font;
         font-size: 18px;
         font-weight: 500;
         text-align: center;
@@ -379,7 +379,7 @@
     }
 
     .contents .grid .box:nth-child(1) {
-        font-family: $font3;
+        font-family: $font;
     }
 
     .contents .grid h3 {
@@ -399,12 +399,13 @@
 
     .contents .grid .col {
         display: grid;
-        grid-template-columns: 1fr 180px;
+        grid-template-columns: 1fr;
         gap: 20px;
+        align-items: flex-start;
 
         li {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
         }
         li img {
             margin-right: 15px;
@@ -443,7 +444,7 @@
         margin-top: 70px;
 
         .controls li {
-            padding: 25px;
+            padding: 15px 0;
             font-size: 18px;
         }
 
@@ -470,7 +471,7 @@
         .splide__pagination {display: none;}
 
         .controls li {
-            padding: 25px 15px;
+            padding: 15px 15px;
             font-size: 16px;
         }
         .controls li:before {
@@ -484,12 +485,8 @@
             background: #848484;
         }
 
-        .contents {
-            font-size: 15px;
-        }
-        .contents > div {
-            padding-top: 30px;
-        }
+        .contents {font-size: 16px;}
+        .contents > div {padding-top: 30px;}
         .contents .grid {
             display: flex;
             flex-direction: column;
@@ -504,12 +501,12 @@
             gap: 20px;
         }
         .contents .grid .col {
-            grid-template-columns: 1fr 125px;
+            grid-template-columns: 1fr;
             gap: 20px;
             padding: 20px 0;
         }
         .contents .grid .box:nth-child(1) {
-            font-family: $font1;
+            font-family: $font;
         }
         .contents .grid .box:nth-child(2) {
             order: 1;

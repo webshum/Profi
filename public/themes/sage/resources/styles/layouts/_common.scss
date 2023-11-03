@@ -12,18 +12,19 @@ a {transition: all 0.3s;}
 h2.title {
     font-size: 44px;
     font-weight: bold;
-    font-family: $font2;
+    font-family: $font;
 }
 
 h3.title {
     font-size: 32px;
     font-weight: bold;
-    font-family: $font2;
+    font-family: $font;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: $font2;
+    font-family: $font;
     font-weight: bold;
+    line-height: 1;
 }
 
 img {
@@ -64,7 +65,7 @@ img {
     }
 
     @media (max-width: 1300px) {
-        max-width: 950px;
+        max-width: 1000px;
         padding: 0 40px;
     }
 
@@ -100,8 +101,11 @@ img {
         background: #fff !important;
     }
 
-    &.button-gray {
+    &.button-gray,
+    &.added {
         background: #9DAAB3 !important;
+        border-color: #9DAAB3 !important;
+        outline-color: #9DAAB3 !important;
     }
     &.button-gray:hover {
         background: #9DAAB3 !important;
@@ -118,6 +122,8 @@ img {
         height: 50px !important;
     }
 }
+
+.added_to_cart {display: none !important;}
 
 .splide .splide__arrow {
     background: none;

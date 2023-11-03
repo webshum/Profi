@@ -30,16 +30,16 @@ $downloads             = $order->get_downloadable_items();
 $show_downloads        = $order->has_downloadable_item() && $order->is_download_permitted();
 
 if ( $show_downloads ) {
-	wc_get_template(
+	/*wc_get_template(
 		'order/order-downloads.php',
 		array(
 			'downloads'  => $downloads,
 			'show_title' => true,
 		)
-	);
+	);*/
 }
 ?>
-<section class="woocommerce-order-details">
+<!-- <section class="woocommerce-order-details">
 	<?php do_action( 'woocommerce_order_details_before_order_table', $order ); ?>
 
 	<h2 class="woocommerce-order-details__title"><?php esc_html_e( 'Order details', 'woocommerce' ); ?></h2>
@@ -98,7 +98,21 @@ if ( $show_downloads ) {
 	</table>
 
 	<?php do_action( 'woocommerce_order_details_after_order_table', $order ); ?>
-</section>
+</section> -->
+
+<div class="info-order text-center">
+	<h3><?php esc_html_e( 'Ihre Bestellung wurde versendet eine Benachrichtigung wird per E-Mail verschickt', 'woocommerce' ); ?></h3>
+
+	<svg class="my-[70px]" width="106" height="81" viewBox="0 0 106 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M33.7273 63.9884L8.43182 38.6929L0 47.1247L33.7273 80.852L106 8.57928L97.5682 0.147461L33.7273 63.9884Z" fill="#1A2539"/>
+	</svg>
+
+	<a href="<?= get_home_url(); ?>" class="button">
+		<span>
+			<?php esc_html_e( 'Home', 'woocommerce' ); ?>
+		</span>
+	</a>
+</div>
 
 <?php
 /**
@@ -110,5 +124,5 @@ if ( $show_downloads ) {
 do_action( 'woocommerce_after_order_details', $order );
 
 if ( $show_customer_details ) {
-	wc_get_template( 'order/order-details-customer.php', array( 'order' => $order ) );
+	// wc_get_template( 'order/order-details-customer.php', array( 'order' => $order ) );
 }

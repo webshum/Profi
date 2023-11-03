@@ -17,7 +17,18 @@
     <?php do_action('get_footer'); ?>
     <?php wp_footer(); ?>
 
-    <script type="module" src="http://localhost:5173/@vite/client"></script>
-    <script type="module" src="http://localhost:5173/resources/scripts/vue.js"></script>
+    <script>
+        window.onload = function() {
+            jQuery(function($) {
+                $('body').on('change', '.qty', function() {
+                    console.log('click');
+                    $('[name="update_cart"]').trigger('click');
+                });
+            });
+        }
+    </script>   
+
+    <script type="module" src="http://localhost:5176/@vite/client"></script>
+    <script type="module" src="http://localhost:5176/resources/scripts/vue.js"></script>
 </body>
 </html>

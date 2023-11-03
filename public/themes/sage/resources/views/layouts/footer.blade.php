@@ -43,4 +43,5 @@
     </div>
 </footer>
 
+@include('layouts.popup-cart')
 @include('components.sprite')

@@ -117,7 +117,6 @@ if( function_exists('acf_add_options_page') ) {
         'capability'    => 'edit_posts',
         'redirect'      => false
     ));
-    
 }
 
 /*
@@ -125,6 +124,15 @@ if( function_exists('acf_add_options_page') ) {
 | Ajax cart
 |--------------------------------------------------------------------------
 */
+
+add_action('wp_ajax_get_cart', 'get_cart');
+add_action('wp_ajax_nopriv_get_cart', 'get_cart');
+
+function get_cart() {
+    echo do_shortcode('[woocommerce_cart]');
+    die();
+}
+
 add_action('wp_ajax_get_cart_count', 'get_cart_count');
 add_action('wp_ajax_nopriv_get_cart_count', 'get_cart_count');
 
@@ -132,6 +140,98 @@ function get_cart_count() {
     echo WC()->cart->get_cart_contents_count();
     die();
 }
+
+// Оновлення кількості товару в кошику через AJAX
+function update_cart_qty() {
+    if (isset($_POST['item_key']) && isset($_POST['quantity'])) {
+        $item_key = sanitize_text_field($_POST['item_key']);
+        $quantity = intval($_POST['quantity']);
+        
+        $cart_item = WC()->cart->get_cart_item($item_key);
+        
+        if ($cart_item) {
+            WC()->cart->set_quantity($item_key, $quantity);
+            
+            $new_subtotal = wc_price($cart_item['data']->get_price() * $quantity);
+            
+            echo json_encode(array(
+                'cart_total' => WC()->cart->get_cart_total(),
+                'cart_count' => WC()->cart->get_cart_contents_count(),
+                'product_subtotal' => $new_subtotal,
+            ));
+        } else {
+            echo json_encode(array(
+                'error_message' => 'Товар не знайдено в кошику.',
+            ));
+        }
+    }
+    die();
+}
+
+
+add_action('wp_ajax_update_cart_qty', 'update_cart_qty');
+add_action('wp_ajax_nopriv_update_cart_qty', 'update_cart_qty');
+
+// Видалення товару з кошика через AJAX
+function remove_cart_item() {
+    if (isset($_POST['item_key'])) {
+        $item_key = sanitize_text_field($_POST['item_key']);
+
+        WC()->cart->remove_cart_item($item_key);
+        
+        echo json_encode(array(
+            'cart_total' => WC()->cart->get_cart_total(),
+            'cart_count' => WC()->cart->get_cart_contents_count(),
+        ));
+    }
+    die();
+}
+
+add_action('wp_ajax_remove_cart_item', 'remove_cart_item');
+add_action('wp_ajax_nopriv_remove_cart_item', 'remove_cart_item');
+
+// Застосування купону до кошика через AJAX
+function apply_coupon() {
+    if (isset($_POST['coupon_code'])) {
+        $coupon_code = sanitize_text_field($_POST['coupon_code']);
+        
+        if (WC()->cart->apply_coupon($coupon_code)) {
+            echo json_encode(array(
+                'cart_total' => WC()->cart->get_cart_total(),
+                'cart_count' => WC()->cart->get_cart_contents_count(),
+                'coupon_message' => 'Купон "' . $coupon_code . '" було застосовано.',
+            ));
+        } else {
+            echo json_encode(array(
+                'error_message' => 'Неможливо застосувати купон "' . $coupon_code . '".',
+            ));
+        }
+    }
+    die();
+}
+
+add_action('wp_ajax_apply_coupon', 'apply_coupon');
+add_action('wp_ajax_nopriv_apply_coupon', 'apply_coupon');
+
+// Функція для видалення купона з корзини через AJAX
+function remove_coupon() {
+    if (isset($_POST['coupon_code'])) {
+        $coupon_code = sanitize_text_field($_POST['coupon_code']);
+        
+        WC()->cart->remove_coupon($coupon_code);
+        
+        if (!WC()->cart->has_discount($coupon_code)) {
+            echo json_encode(array('success' => true));
+        } else {
+            echo json_encode(array('success' => false));
+        }
+    }
+    die();
+}
+
+add_action('wp_ajax_remove_coupon', 'remove_coupon');
+add_action('wp_ajax_nopriv_remove_coupon', 'remove_coupon');
+
 
 /*
 |--------------------------------------------------------------------------

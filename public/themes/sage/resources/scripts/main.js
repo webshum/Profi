@@ -1,3 +1,66 @@
+import '@splidejs/splide/css';
+import Splide from '@splidejs/splide';
+
+if (document.querySelector('.home-slider .splide') != null) {
+    new Splide('.home-slider .splide', {
+        type: 'loop',
+        perPage: 5,
+        autoplay: true,
+        gap: 10,
+        breakpoints: {
+            991: {
+                perPage: 1,
+                padding: { right: 280 },
+                arrows: false
+            },
+            700: {
+                padding: { right: 20 },
+            }
+        }
+    }).mount();
+}
+
+if (document.querySelector('.home-products .splide') != null) {
+    new Splide('.home-products .splide', {
+        type: 'loop',
+        perPage: 1,
+        arrows: false,
+        padding: { right: 30 },
+        gap: 15,
+        mediaQuery: 'min',
+        breakpoints: {
+            700: {
+                destroy: true
+            }
+        }
+    }).mount();
+}
+
+if (document.querySelector('.product-slider .splide') != null) {
+    new Splide('.product-slider .splide', {
+        type: 'loop',
+        perPage: 1,
+        arrows: true,
+    }).mount();
+}
+
+if (document.querySelector('.product-tab .splide') != null) {
+    new Splide('.product-tab .splide', {
+        type: 'loop',
+        perPage: 1,
+        perMove: 1,
+        arrows: false,
+        gap: 0,
+        mediaQuery: 'min',
+        autoplay: true,
+        breakpoints: {
+            700: {
+                destroy: true
+            }
+        }
+    }).mount();
+}
+
 /* MENU
 ------------------------------------ */
 export function menu() {
@@ -93,3 +156,44 @@ export function productTab() {
         });
     });
 }   
+
+/* POPUP 
+---------------------------------------------------- */
+export function popup() {
+    let btn = document.querySelectorAll('.btn-popup');
+    let overlay = document.querySelector('.popup-overlay');
+    let popup = null;
+    let close = null;
+    let _this = this;
+
+    for (var i = 0; i < btn.length; i++) {
+        btn[i].addEventListener('click', function(e) {
+            e.preventDefault();
+
+            popup = document.querySelector('.popup-' + this.getAttribute('data-popup'));
+            close = popup.querySelectorAll('.popup-close');
+            
+            let top  = window.pageYOffset || document.documentElement.scrollTop,
+            left = window.pageXOffset || document.documentElement.scrollLeft;
+            
+            overlay.classList.add('active');
+            popup.classList.add('active');
+            popup.style.top = (top + 100) + 'px';
+
+            close.forEach(close => close.addEventListener('click', closePopup));
+            overlay.addEventListener('click', closePopup);
+        });
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.keyCode == 27) closePopup(e);
+    });
+
+    function closePopup(e) {
+        e.preventDefault();
+        overlay.classList.remove('active');
+        popup.classList.remove('active');
+    }
+}
+
+popup();

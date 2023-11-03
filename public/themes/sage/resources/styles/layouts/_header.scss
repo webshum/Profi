@@ -1,7 +1,7 @@
 #header {
     background: #fff;
     position: relative;
-    z-index: 1;
+    z-index: 10;
 
     .center {
         display: flex;
@@ -93,8 +93,9 @@
             transform-origin: center;
             transform: rotate(45deg);
             margin-left: 13px;
+            transition: all 0.3s;
         }
-        .menu-item-has-children > a:hover:after {color: $akcent;}
+        .menu-item-has-children > a:hover:after {border-color: $akcent;}
 
         .sub-menu {
             display: none;
@@ -180,7 +181,7 @@
         }
 
         .head-cart {
-            margin-left: 0;
+            margin-left: 0 !important;
             margin-top: 50px;
         }
         .head-cart svg {

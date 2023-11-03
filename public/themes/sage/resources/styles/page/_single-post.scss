@@ -15,6 +15,20 @@
     .section {
         color: #fff;
         background: $blue;
+
+        .subtitle {
+            padding: 0 100px;
+        }
+    }
+
+    @media (max-width: 991px) {
+        .product-tab h4 {font-size: 21px;}
+        .product-tab {padding-bottom: 100px;}
+
+        .section {
+            padding: 170px 40px;
+        }
+        .section .subtitle {padding: 0;}
     }
 }
 
@@ -36,7 +50,7 @@
     h1 {
         font-size: 60px;
         font-weight: bold;
-        font-family: $font2;
+        font-family: $font;
     }
 
     ul {margin-top: 12px;}
@@ -56,6 +70,39 @@
         top: 12px;
         left: 0;
     }
+
+    @media (max-width: 1500px) {
+        font-size: 20px;
+    }
+
+    @media (max-width: 1300px) {
+        padding: 100px 0;
+        h1 {font-size: 45px;}
+        font-size: 17px;
+    }
+
+    @media (max-width: 991px) {
+        padding: 70px 0;
+        font-size: 28px;
+        background: linear-gradient(130deg, #9DAAB3 40%, #1A2539);
+
+        h1 {font-size: 60px;}
+
+        .center {
+            grid-template-columns: 1fr;
+        }
+
+        .center .image {margin-top: 100px;}
+    }
+
+    @media (max-width: 700px) {
+        font-size: 18px;
+        padding: 35px 0 55px 0;
+        h1 {font-size: 40px;}
+        ul {margin-top: 20px;}
+
+        .center .image {margin-top: 40px;}
+    }
 }
 
 /* SINGLE COLUMN
@@ -68,6 +115,53 @@
         font-size: 24px;
         font-weight: 500;
         margin-bottom: 5px;
+    }
+
+    .background {
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
+    @media (max-width: 1300px) {
+        font-size: 17px;
+        h3 {font-size: 20px;}
+        .grid {
+            gap: 60px;
+        }
+    }
+
+    @media (max-width: 991px) {
+        padding: 100px 0 15px 0;
+        font-size: 18px;
+
+        h2.title {text-align: left;}
+        .grid {
+            margin-top: 40px;
+            gap: 40px;
+            grid-template-columns: 1fr;
+        }
+
+        .background {margin-top: 40px;}
+    }
+
+    @media (max-width: 700px) {
+        padding: 90px 0 15px 0;
+        font-size: 16px;
+        h3 {font-size: 18px;}
+
+        .background {
+            margin-left: -40px;
+            margin-right: -40px;
+            img {
+                display: block;
+                width: 100%;
+            }
+        }
     }
 }
 
@@ -102,6 +196,50 @@
         flex-direction: column;
         gap: 50px;
     }
+
+    @media (max-width: 1300px) {
+        padding: 100px 0;
+        font-size: 17px;
+
+        h3 {font-size: 20px;}
+
+        .content {gap: 25px;}
+
+        .grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+    }
+
+    @media (max-width: 991px) {
+        padding: 120px 0;
+        font-size: 18px;
+        h2.title {text-align: left;}
+        .subtitle {text-align: left;}
+
+        .grid {
+            margin-top: 40px;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .content {gap: 40px;}
+        .content h3 {font-size: 21px;}
+
+        .image {order: 1;}
+    }
+
+    @media (max-width: 700px) {
+        padding: 100px 0;
+        font-size: 16px;
+        .subtitle {font-size: 18px;}
+        .content {gap: 25px;}
+        .content h3 {font-size: 18px;}
+        .image {
+            margin-left: -40px;
+            margin-right: -40px;
+        }
+    }
 }
 
 /* SINGLE ACCORDEON
@@ -121,6 +259,7 @@
         padding: 20px 0;
         border-top: 1px solid #848484;
     }
+    .item-accordeon:last-child {border-bottom: 1px solid #848484;}
 
     .btn-accordeon {
         display: flex;
@@ -144,6 +283,164 @@
 
     .content-accordeon {
         font-size: 18px;
+    }
+
+    @media (max-width: 1300px) {
+        padding: 100px 0;
+
+        .center {
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+        }
+
+        .item-accordeon {padding: 15px 0;}
+
+        .btn-accordeon {font-size: 18px;}
+    }
+
+    @media (max-width: 991px) {
+        padding: 95px 0 0 0;
+
+        .center {
+            grid-template-columns: 1fr;
+            gap: 60px;
+        }
+
+        h2.title br {display: none;}
+
+        .accordeon {margin-top: 60px;} 
+        .btn-accordeon {font-size: 21px;}
+        .item-accordeon {padding: 20px 0;}
+        .inner-accordeon {padding-top: 20px;}
+
+        .image {
+            margin-left: -40px;
+            margin-right: -40px;
+            img {
+                display: block;
+                width: 100%;
+            }
+        }
+    }
+
+    @media (max-width: 700px) {
+        padding: 40px 0 0 0;
+
+        .accordeon {margin-top: 45px;}
+        .btn-accordeon {font-size: 18px;}
+        .center {gap: 40px;}
+    }
+}
+
+/* SECTION BACKGROUND
+-------------------------------------- */
+.section-background {
+    padding: 150px 0;
+
+    .center {position: relative;}
+
+    .box {
+        position: absolute;
+        top: 140px;
+        bottom: 0;
+        right: 0;
+        z-index: 2;
+        width: 865px;
+        background: rgba(235,238,240,.8);
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 25px;
+        padding: 35px;
+    }
+    .box .subtitle {
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+    .box h2.title {
+        margin-bottom: 20px;
+        line-height: 1.2;
+    }
+
+    @media (max-width: 1500px) {
+        .box {
+            width: 750px;
+            grid-template-columns: 1fr 295px;
+        }
+    }
+
+    @media (max-width: 1300px) {
+        .box {
+            width: 650px;
+            grid-template-columns: 1fr 215px;
+            padding: 25px;
+        }
+    }
+
+    @media (max-width: 991px) {
+        padding: 255px 0 0 0;
+        position: relative;
+        overflow: hidden;
+
+        .center {
+            padding-left: 0;
+            position: static;
+        }
+
+        .center > img {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 100%;
+            top: 120px;
+        }
+
+        .box {
+            grid-template-columns: 1fr 1fr;
+            padding: 35px;
+            top: 135px;
+            left: 40px;
+            width: inherit;
+            position: static;
+            margin-right: -40px;
+            margin-left: 40px;
+            align-items: center;
+            font-size: 18px;
+            position: relative;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+        .box .thumb img {
+            display: block;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    @media (max-width: 700px) {
+        padding: 150px 0 0 0;
+
+        .center > img {
+            height: inherit;
+            min-height: 400px;
+            top: 100px;
+        }
+
+        .box {
+            grid-template-columns: 1fr;
+            padding: 20px 0 0 20px;
+            margin-left: 20px;
+        }
+        .box .content {
+            padding-right: 40px;
+        }
+        .box .subtitle {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .box h2.title {margin-bottom: 15px;}
+        .box .text {font-size: 16px;}
+        .box .thumb {margin-left: -40px;}
     }
 }
 
@@ -177,6 +474,37 @@
         &:nth-child(6) {animation-delay: 0.6s;}
         &:nth-child(7) {animation-delay: 0.9s;}
         &:nth-child(8) {animation-delay: 1.2s;}
+    }
+
+    @media (max-width: 1500px) {
+        .gallery .image {height: 280px;}
+    }
+
+    @media (max-width: 1300px) {
+        .gallery .image {height: 215px;}
+    }
+
+    @media (max-width: 991px) {
+        padding: 150px 0;
+
+        .gallery {
+            margin-top: 50px;
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .gallery .image {height: 370px;}
+    }
+
+    @media (max-width: 700px) {
+        padding: 79px 0;
+        h2.title {text-align: center;}
+        .gallery {
+            margin-top: 20px;
+            gap: 5px;
+        }
+        .gallery .image {
+            gap: 5px;
+            height: 165px;
+        }
     }
 }
 

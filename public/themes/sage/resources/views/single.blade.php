@@ -166,6 +166,39 @@
         </div>
     @endif
 
+    @if(!isArrayEmpty(get_field('section_background')))
+        @php($section = get_field('section_background'))
+        <div class="section-background">
+            <div class="center">
+                @if(!empty($section))
+                    <img src="{!! $section['image']['url'] !!}" alt="{!! $section['image']['alt'] !!}">
+                @endif
+
+                <div class="box">
+                    <div class="content">
+                        @if(!empty($section['subtitle']))
+                            <p class="subtitle">{!! $section['subtitle'] !!}</p>
+                        @endif
+
+                        @if(!empty($section['title']))
+                            <h2 class="title">{!! $section['title'] !!}</h2>
+                        @endif
+
+                        @if(!empty($section['text']))
+                            <div class="text">{!! $section['text'] !!}</div>
+                        @endif
+                    </div>
+
+                    @if(!empty($section['thumb']))
+                        <div class="thumb">
+                            <img src="{!! $section['thumb']['url'] !!}" alt="{!! $section['thumb']['alt'] !!}">
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    @endif
+
     @if(!isArrayEmpty(get_field('section')))
         @php($section = get_field('section'))
         <div class="section text-center py-[80px]">
@@ -176,9 +209,9 @@
             @endif
 
             @if(!empty($section['subtitle']))
-                <p class="subtitle animated">
+                <div class="subtitle animated">
                     {!! $section['subtitle'] !!}
-                </p>
+                </div>
             @endif
 
             @if(!empty($section['button']))

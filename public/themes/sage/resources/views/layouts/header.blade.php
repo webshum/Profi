@@ -18,7 +18,7 @@
                 ]) 
             !!}
 
-            <a href="{{ wc_get_cart_url() }}" class="head-cart">
+            <a href="{{ wc_get_cart_url() }}" class="head-cart btn-popup" data-popup="cart">
                 <svg width="23" height="19"><use xlink:href="#cart"></use></svg>
                 <span>
                     {!! WC()->cart->get_cart_contents_count() !!}

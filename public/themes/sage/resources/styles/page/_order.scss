@@ -1,0 +1,35 @@
+.woocommerce-order-received {
+	.woocommerce-order-overview,
+	.woocommerce-notice {display: none;}
+	.woocommerce-order-overview + p {display: none;}
+
+	.page {padding: 160px 0 100px 0;}
+
+	@media (max-width: 700px) {
+		.page {padding: 85px 0 75px 0;}
+	}
+}
+
+.info-order {
+	h3 {
+		font-size: 32px;
+		font-weight: bold;
+		max-width: 600px;
+		margin: 0 auto;
+	}	
+
+	svg {
+		margin: 70px auto; 
+		display: block;
+	}
+
+	@media (max-width: 700px) {
+		h3 {
+			font-size: 24px;
+			font-weight: bold;
+			max-width: inherit;
+		}
+
+		svg {margin: 30px auto 65px auto;}
+	}
+}
