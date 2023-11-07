@@ -1,4 +1,3 @@
-import '@splidejs/splide/css';
 import Splide from '@splidejs/splide';
 
 if (document.querySelector('.home-slider .splide') != null) {
@@ -182,6 +181,10 @@ export function popup() {
 
             close.forEach(close => close.addEventListener('click', closePopup));
             overlay.addEventListener('click', closePopup);
+
+            if (this.getAttribute('data-popup') == 'color') {
+                popupColor();
+            }
         });
     }
 
@@ -196,4 +199,45 @@ export function popup() {
     }
 }
 
-popup();
+function popupColor() {
+    const colors = document.querySelectorAll('.popup-color .list .item');
+    const view = document.querySelector('.popup-color .view .image img');
+    const viewMini = document.querySelector('.summary .view-color');
+    const button = document.querySelector('.popup-color .view .button');
+    let src = '';
+    let title = '';
+
+    colors.forEach(color => {
+        color.addEventListener('click', e => {
+            const image = e.target.closest('.item').querySelector('img');
+            view.src = image.src;
+            src = image.src;
+            title = e.target.closest('.item').querySelector('h4').textContent;
+        });
+    });
+
+    button.addEventListener('click', e => {
+        const image = document.createElement('img');
+        image.src = src;
+
+        const inputColorTitle = document.createElement('input');
+        inputColorTitle.setAttribute('type', 'hidden');
+        inputColorTitle.setAttribute('name', 'color_name');
+        inputColorTitle.value = title;
+
+        const inputColorImage = document.createElement('input');
+        inputColorImage.setAttribute('type', 'hidden');
+        inputColorImage.setAttribute('name', 'color_image');
+        inputColorImage.value = src;
+
+        if (viewMini.querySelector('img') != null) {
+            viewMini.querySelector('img').src = src;
+            viewMini.querySelector('input[name="color_name"]').value = title;
+            viewMini.querySelector('input[name="color_image"]').value = src;
+        } else {
+            viewMini.appendChild(image);
+            document.querySelector('.cart').appendChild(inputColorTitle);
+            document.querySelector('.cart').appendChild(inputColorImage);
+        }
+    });
+}

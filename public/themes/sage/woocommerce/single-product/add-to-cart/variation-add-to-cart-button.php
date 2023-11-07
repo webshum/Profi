@@ -16,15 +16,31 @@ global $product;
 
 	<?php
 	do_action( 'woocommerce_before_add_to_cart_quantity' );
+	?>
 
-	woocommerce_quantity_input(
-		array(
-			'min_value'   => apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ),
-			'max_value'   => apply_filters( 'woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product ),
-			'input_value' => isset( $_POST['quantity'] ) ? wc_stock_amount( wp_unslash( $_POST['quantity'] ) ) : $product->get_min_purchase_quantity(), // WPCS: CSRF ok, input var ok.
-		)
-	);
+	<div class="number-input">
+		<div class="inner">
+			<?php
+				woocommerce_quantity_input(
+					array(
+						'min_value'   => apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ),
+						'max_value'   => apply_filters( 'woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product ),
+						'input_value' => isset( $_POST['quantity'] ) ? wc_stock_amount( wp_unslash( $_POST['quantity'] ) ) : $product->get_min_purchase_quantity(), // WPCS: CSRF ok, input var ok.
+					)
+				);
+			?>
+	        <div onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">
+	            <svg width="11" height="6"><use xlink:href="#arr"></use></svg>
+	        </div>
+	        <div onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus">
+	            <svg width="11" height="6"><use xlink:href="#arr"></use></svg>
+	        </div>
+	    </div>
 
+        <p>reicht für ca. 50 m²</p>
+	</div>
+
+	<?php
 	do_action( 'woocommerce_after_add_to_cart_quantity' );
 	?>
 

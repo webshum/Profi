@@ -14,7 +14,7 @@ use function Roots\bundle;
  * @return void
  */
 add_action('wp_enqueue_scripts', function () {
-    $asset_ver = env('WP_ENV') == 'production' ? '1.0.0' : time();
+    $asset_ver = time();
 
     wp_enqueue_script( 'vue-js', get_stylesheet_directory_uri() . '/dist/scripts/vue.js', null, $asset_ver, true );
 

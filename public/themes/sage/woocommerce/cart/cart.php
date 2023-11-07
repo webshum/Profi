@@ -36,6 +36,7 @@ do_action( 'woocommerce_before_cart' ); ?>
                         foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
                             $_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
                             $product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+
                             /**
                              * Filter the product name.
                              *
@@ -93,6 +94,15 @@ do_action( 'woocommerce_before_cart' ); ?>
                                             <?php esc_attr_e( 'Artikelnummer', 'sku' ); ?>
 
                                             <?= $_product->get_sku(); ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if (!empty($cart_item['color_name'])) : ?>
+                                        <div class="color">
+                                            <p><?= $cart_item['color_name'] ?></p>
+                                            <div class="image">
+                                                <img src="<?= $cart_item['color_image'] ?>" alt="">
+                                            </div>
                                         </div>
                                     <?php endif; ?>
                                     </div>

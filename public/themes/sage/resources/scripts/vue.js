@@ -4,14 +4,16 @@ import { accordeon, menu, animScrollPage, productTab, popup } from './main.js';
 import { createApp } from 'vue';
 import app from './app.vue';
 
-menu();
-accordeon();
-animScrollPage();
-popup();
-addToCart();
-updateCart();
-getCart();
-if (document.querySelector('.product-tab') != null) productTab();
-if (document.querySelector('.woocommerce-checkout') != null) step();
+window.onload = () => {
+	menu();
+	accordeon();
+	animScrollPage();
+	popup();
+	addToCart();
+	updateCart();
+	getCart();
+	if (document.querySelector('.product-tab') != null) productTab();
+	if (document.querySelector('.woocommerce-checkout') != null) step();
+}
 
 createApp(app).mount('#vue');

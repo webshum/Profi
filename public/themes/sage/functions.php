@@ -265,3 +265,56 @@ function add_module_to_script($tag, $handle, $src) {
     return $tag;
 }
 add_filter('script_loader_tag', 'add_module_to_script', 10, 3);
+
+/*
+|--------------------------------------------------------------------------
+| ADD CONTENT AFTER TITLE
+|--------------------------------------------------------------------------
+*/
+function add_after_title_content() {
+    ?>
+
+    <div class="choise-color">
+        <a href="#" class="btn-popup" data-popup="color">Wähle eine Farbe</a>
+        <div class="view-color"></div>
+    </div>
+
+    <?php
+}
+
+add_action('woocommerce_single_product_summary', 'add_after_title_content', 5);
+
+/*
+|--------------------------------------------------------------------------
+| ADD CUSTOM FIELDS TO CART AND ORDER
+|--------------------------------------------------------------------------
+*/
+function custom_field_in_cart($cart_item_data, $product_id) {
+    $color_name = isset($_POST['color_name']) ? sanitize_text_field($_POST['color_name']) : '';
+    $color_image = isset($_POST['color_image']) ? sanitize_text_field($_POST['color_image']) : '';
+
+    if (!empty($color_name)) {
+        $cart_item_data['color_name'] = $color_name;
+    }
+
+    if (!empty($color_image)) {
+        $cart_item_data['color_image'] = $color_image;
+    }
+
+    return $cart_item_data;
+}
+
+add_filter('woocommerce_add_cart_item_data', 'custom_field_in_cart', 10, 2);
+
+function save_custom_field_to_order($item_id, $values, $cart_item_key) {
+    if (isset($values['color_name'])) {
+        wc_add_order_item_meta($item_id, 'Color name', $values['color_name']);
+    }
+
+    if (isset($values['color_image'])) {
+        wc_add_order_item_meta($item_id, 'Color image', "<img width='50' height='20' src='{$values['color_image']}'>");
+    }
+}
+
+add_action('woocommerce_add_order_item_meta', 'save_custom_field_to_order', 10, 3);
+
