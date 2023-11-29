@@ -240,9 +240,12 @@
                     <div class="gallery mt-[50px]">
                         @foreach($project['item'] as $item)
                             @if(!empty($item))
-                                <div class="image animated scale-up">
+                                @php($link = (!empty($item['link'])) ? $item['link']['url'] : '')
+                                @php($target = (!empty($item['link']['target'])) ? "target='_blank'" : '')
+
+                                <a href="{{ $link }}" {{ $target }} class="image animated scale-up">
                                     <img src="{{ $item['image']['url'] }}" alt="{{ $item['image']['alt'] }}">
-                                </div>
+                                </a>
                             @endif
                         @endforeach
                     </div>

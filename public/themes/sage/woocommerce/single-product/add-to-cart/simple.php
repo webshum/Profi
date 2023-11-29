@@ -55,7 +55,15 @@ if ( $product->is_in_stock() ) : ?>
 	            </div>
 	        </div>
 
-            <p>reicht für ca. 50 m²</p>
+	        <?php 
+	        	$count = 0; 
+
+	        	if (!empty(get_field('consumption', 'options'))) {
+	        		$count = get_field('consumption', 'options');
+	        	}
+	        ?>
+
+            <p data-count="<?= $count ?>">розхід на к-сть квадратів <span><?= $count ?></span></p>
         </div>
 
         <?php

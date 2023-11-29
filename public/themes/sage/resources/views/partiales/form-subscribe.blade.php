@@ -2,8 +2,17 @@
     <div class="center grid grid-cols-2 !py-[105px]">
         <div class="content pr-[130px]">
             <div class="relative z-10">
-                <h2 class="title animated">Wird getrunken?<br> wir rufen Sie zurück</h2>
-                <p class="mt-[20px] animated">Wir beantworten alle Ihre Fragen. Geben Sie die Daten ein und wir rufen Sie zurück</p>
+                @if(!empty(get_field('title_form_subscribe', 'options')))
+                    <h2 class="title animated">
+                        {!! get_field('title_form_subscribe', 'options') !!}
+                    </h2>
+                @endif
+
+                @if(!empty(get_field('subtitle_form_subscribe', 'options')))
+                    <p class="mt-[20px] animated">
+                        {!! get_field('subtitle_form_subscribe', 'options') !!}
+                    </p>
+                @endif
             </div>
         </div>
 

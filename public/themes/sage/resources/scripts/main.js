@@ -241,3 +241,28 @@ function popupColor() {
         }
     });
 }
+
+/* COUNT M.K
+------------------------------------ */
+export function countСonsumption() {
+    const quantity = document.querySelectorAll('.number-input');
+
+    quantity.forEach(quantity => {
+        const number = 0;
+        const count = quantity.querySelector('[data-count]');
+        const buttons = [
+            quantity.querySelector('.plus'),
+            quantity.querySelector('.minus')
+        ];
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', e => {
+                const num = quantity.querySelector('input[type="number"]').value;
+                const result = Number(num) * Number(count.dataset.count);
+                
+                count.querySelector('span').textContent = result;
+            });
+        });
+        
+    });
+}

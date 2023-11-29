@@ -244,9 +244,14 @@
     .home-gallery {background: none;}
 
     @media (max-width: 1500px) {
+        .wrap {
+            grid-template-columns: 500px 1fr;
+            gap: 40px;
+        }
+
         form.cart .button {
             float: right !important;
-            max-width: 300px;
+            max-width: 275px;
         }
 
         .price ins .amount {

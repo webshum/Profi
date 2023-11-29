@@ -11,7 +11,6 @@ export function step() {
 	});
 
 	buttonNext.addEventListener('click', e => {
-		console.log('step');
 		e.preventDefault();
 		checkout1.classList.remove('show');
 		checkout2.classList.add('show');
