@@ -281,8 +281,7 @@ export function countСonsumption() {
                     newAmount = document.querySelector('.price bdi');
                 }
 
-                console.log(total);
-                newAmount.innerHTML = sum + `<span class="woocommerce-Price-currencySymbol">${symbol}</span>`;
+                newAmount.innerHTML = sum.toFixed(2) + `<span class="woocommerce-Price-currencySymbol">${symbol}</span>`;
                 
                 
                 count.querySelector('span').textContent = result;

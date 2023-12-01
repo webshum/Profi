@@ -17,7 +17,7 @@
     <?php do_action('get_footer'); ?>
     <?php wp_footer(); ?>
 
-    <!-- <script type="module" src="http://127.0.0.1:5173/@vite/client"></script>
-    <script type="module" src="http://127.0.0.1:5173/resources/scripts/vue.js"></script> -->
+    <script type="module" src="http://127.0.0.1:5173/@vite/client"></script>
+    <script type="module" src="http://127.0.0.1:5173/resources/scripts/vue.js"></script>
 </body>
 </html>
