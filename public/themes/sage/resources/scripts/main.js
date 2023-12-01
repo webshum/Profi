@@ -246,10 +246,23 @@ function popupColor() {
 ------------------------------------ */
 export function countСonsumption() {
     const quantity = document.querySelectorAll('.number-input');
+    const price = document.querySelector('.price');
+    let symbol = price.querySelector('.woocommerce-Price-currencySymbol').textContent;
+    let amount = 0;
+    let total = 0;
+
+    if (price.querySelector('ins') != null) {
+        amount = price.querySelector('ins bdi');
+    } else {
+        amount = price.querySelector('bdi');
+    }
+
+    total = amount.textContent.replace(/[^\d.]/g, '');
 
     quantity.forEach(quantity => {
         const number = 0;
         const count = quantity.querySelector('[data-count]');
+        
         const buttons = [
             quantity.querySelector('.plus'),
             quantity.querySelector('.minus')
@@ -259,10 +272,21 @@ export function countСonsumption() {
             btn.addEventListener('click', e => {
                 const num = quantity.querySelector('input[type="number"]').value;
                 const result = Number(num) * Number(count.dataset.count);
+                let newAmount = 0;
+                let sum = Number(num) * Number(total);
+
+                if (price.querySelector('ins') != null) {
+                    newAmount = document.querySelector('.price ins bdi');
+                } else {
+                    newAmount = document.querySelector('.price bdi');
+                }
+
+                console.log(total);
+                newAmount.innerHTML = sum + `<span class="woocommerce-Price-currencySymbol">${symbol}</span>`;
+                
                 
                 count.querySelector('span').textContent = result;
             });
         });
-        
     });
 }
