@@ -272,11 +272,16 @@ add_filter('script_loader_tag', 'add_module_to_script', 10, 3);
 |--------------------------------------------------------------------------
 */
 function add_after_title_content() {
+    global $product;
     ?>
 
+    <div class="meta-description">
+        <?= $product->get_short_description(); ?>
+    </div>
+
     <div class="choise-color">
-        <a href="#" class="btn-popup" data-popup="color">Wähle eine Farbe</a>
         <div class="view-color"></div>
+        <a href="#" class="btn-popup" data-popup="color">Змінити колір</a>
     </div>
 
     <?php
@@ -318,3 +323,73 @@ function save_custom_field_to_order($item_id, $values, $cart_item_key) {
 
 add_action('woocommerce_add_order_item_meta', 'save_custom_field_to_order', 10, 3);
 
+/*
+|--------------------------------------------------------------------------
+| AJAX FORM
+|--------------------------------------------------------------------------
+*/
+function javascript_variables(){ ?>
+    <script type="text/javascript">
+        const ajax_url = '<?php echo admin_url( "admin-ajax.php" ); ?>';
+        const ajax_nonce = '<?php echo wp_create_nonce( "secure_nonce_name" ); ?>';
+    </script><?php
+}
+add_action ( 'wp_head', 'javascript_variables' );
+
+add_action('wp_ajax_send', 'send_form');
+add_action('wp_ajax_nopriv_send', 'send_form');
+
+function send_form() {
+    $name = $_POST['name'];
+    $tel = $_POST['tel'];
+
+    $to = get_option('admin_email');
+    $subject = 'Новий лист';
+    $body = 'Name: ' . $_POST['name'] . '<br>';
+    $body .= 'Tel: ' . $_POST['tel'] . '<br>';
+    $headers = ['Content-Type: text/html; charset=UTF-8'];
+     
+    wp_mail( $to, $subject, $body, $headers );
+ 
+    echo 'Done!';
+    wp_die();
+}
+
+/*
+|--------------------------------------------------------------------------
+| Remove fields at page woocommerce checkout
+|--------------------------------------------------------------------------
+*/
+add_filter('woocommerce_checkout_fields', 'checkout_fields');
+
+function checkout_fields($fields){
+    // remove billing fields
+    unset($fields['billing']['billing_company']);
+    unset($fields['billing']['billing_address_1']);
+    unset($fields['billing']['billing_address_2']);
+    unset($fields['billing']['billing_postcode']);
+    unset($fields['billing']['billing_country']);
+    unset($fields['billing']['billing_state']);
+   
+    // remove shipping fields 
+    unset($fields['shipping']['shipping_first_name']);    
+    unset($fields['shipping']['shipping_last_name']);  
+    unset($fields['shipping']['shipping_company']);
+    unset($fields['shipping']['shipping_address_1']);
+    unset($fields['shipping']['shipping_address_2']);
+    unset($fields['shipping']['shipping_city']);
+    unset($fields['shipping']['shipping_postcode']);
+    unset($fields['shipping']['shipping_country']);
+    unset($fields['shipping']['shipping_state']);
+    
+    $fields['billing']['billing_city']['label'] = 'Місто / Село';
+    $fields['billing']['billing_email']['default'] = 'admin@admin.com';
+    return $fields;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Remove cupon from checkout
+|--------------------------------------------------------------------------
+*/
+add_filter('woocommerce_coupons_enabled', '__return_false');

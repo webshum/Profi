@@ -43,6 +43,8 @@
     </div>
 </footer>
 
+<div class="popup-overlay"></div>
 @include('layouts.popup-cart')
 @include('layouts.popup-color')
+@include('layouts.popup-success')
 @include('components.sprite')

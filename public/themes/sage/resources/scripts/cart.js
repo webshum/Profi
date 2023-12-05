@@ -12,6 +12,7 @@ export function addToCart() {
                 xhr.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                         document.querySelector('.head-cart span').textContent = this.responseText;
+                        window.scrollTo({top: 0, behavior: 'smooth'});
                     }
                 };
                 xhr.send();

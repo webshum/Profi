@@ -1,0 +1,22 @@
+.popup-success {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: #fff;
+	z-index: 9991;
+	max-width: 500px;
+	width: 100%;
+	padding: 40px;
+	text-align: center;
+
+	.popup-close {
+		position: absolute;
+		top: 15px;
+		right: 15px;
+	}
+
+	@media (max-width: 700px) {
+		max-width: 300px;
+	}
+}

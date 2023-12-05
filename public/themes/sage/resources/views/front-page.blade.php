@@ -225,13 +225,26 @@
                     <h2 class="title animated">{!! $section['title'] !!}</h2>
                 @endif
 
-                @if(!empty($section['slider']))
+                @if(!isArrayEmpty($section['slider']))
                     <div class="splide mt-[50px]">
                         <div class="splide__track">
                             <ul class="splide__list">
                                 @foreach($section['slider'] as $slide)
                                     <li class="splide__slide">
-                                        <img src="{!! $slide['slide']['url'] !!}" alt="{!! $slide['slide']['alt'] !!}">
+                                        @if (!empty($slide['slide']['image']['link']))
+                                            @php
+                                                if (!empty($slide['slide']['link']['url'])) {
+                                                    $link = $slide['slide']['link']['url'];
+                                                } else {
+                                                    $link = '';
+                                                }
+
+                                                $target = (!empty($slide['slide']['link']['target'])) ? "target='_blank'" : ''
+                                            @endphp
+                                            <a href="{!! $link !!}" {{ $target }}>
+                                                <img src="{!! $slide['slide']['image']['url'] !!}" alt="{!! $slide['slide']['image']['alt'] !!}">
+                                            </a>
+                                        @endif
                                     </li>
                                 @endforeach
                             </ul>

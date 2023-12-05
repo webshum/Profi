@@ -16,16 +16,16 @@
             </div>
         </div>
 
-        <form action="#" class="form-subscribe pl-[130px]">
+        <form action="#" class="form-subscribe pl-[130px]" name="subscribe">
             <div class="relative z-10">
                 <label class="field-input">
                     <div class="label">Name</div>
-                    <input type="text" placeholder="Your name">
+                    <input type="text" name="name" placeholder="Your name" required>
                 </label>
 
                 <label class="field-input">
-                    <div class="label">Email</div>
-                    <input type="text" placeholder="Eexampleeeee@gmail.com">
+                    <div class="label">Tel</div>
+                    <input type="tel" name="tel" required>
                 </label>
 
                 <button type="submit" class="button">Schicken</button>

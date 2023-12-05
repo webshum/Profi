@@ -213,10 +213,16 @@ function popupColor() {
             view.src = image.src;
             src = image.src;
             title = e.target.closest('.item').querySelector('h4').textContent;
+            console.log(title);
+            set();
         });
     });
 
     button.addEventListener('click', e => {
+        set();
+    });
+
+    function set() {
         const image = document.createElement('img');
         image.src = src;
 
@@ -232,14 +238,20 @@ function popupColor() {
 
         if (viewMini.querySelector('img') != null) {
             viewMini.querySelector('img').src = src;
-            viewMini.querySelector('input[name="color_name"]').value = title;
-            viewMini.querySelector('input[name="color_image"]').value = src;
+            document.querySelector('input[name="color_name"]').value = title;
+            document.querySelector('input[name="color_image"]').value = src;
         } else {
             viewMini.appendChild(image);
             document.querySelector('.cart').appendChild(inputColorTitle);
             document.querySelector('.cart').appendChild(inputColorImage);
         }
-    });
+
+        if (window.innerWidth <= 700) {
+            document.querySelector('.popup-overlay').classList.remove('active');
+            document.querySelector('.popup-color').classList.remove('active');
+            button.click();
+        }
+    }
 }
 
 /* COUNT M.K
@@ -287,5 +299,49 @@ export function countСonsumption() {
                 count.querySelector('span').textContent = result;
             });
         });
+    });
+}
+
+export function submitForm() {
+    const overlay = document.querySelector('.popup-overlay');
+    const popup = document.querySelector('.popup-success');
+    const close = popup.querySelectorAll('.popup-close');
+
+    function closePopup(e) {
+        e.preventDefault();
+        overlay.classList.remove('active');
+        popup.classList.remove('active');
+    }
+
+    document.forms.subscribe.addEventListener('submit', e => {
+        e.preventDefault();
+
+        e.target.classList.add('preload');
+
+        const name = e.target.name.value;
+        const tel = e.target.tel.value;
+        const data = `name=${name}&tel=${tel}&action=send`;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', ajax_url);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send(data);
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                e.target.classList.remove('preload');
+                e.target.reset();
+
+                overlay.classList.add('active');
+                popup.classList.add('active');
+
+                close.forEach(close => close.addEventListener('click', closePopup));
+                overlay.addEventListener('click', closePopup);
+            }
+        }
+
+        xhr.onerror = () => {
+            console.log('Network error!');
+        }
     });
 }

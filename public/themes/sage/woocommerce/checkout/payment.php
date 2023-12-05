@@ -51,7 +51,7 @@ if ( ! wp_doing_ajax() ) {
 		<?php do_action( 'woocommerce_review_order_before_submit' ); ?>
 
 		<div class="controls flex items-center justify-between mt-[50px]">
-			<a href="#" class="btn-back button-form">
+			<a href="#" class="btn-back button-prev">
 				<span>
 					<?php esc_html_e( 'Weiter einkaufen', 'woocommerce' ); ?>
 				</span>

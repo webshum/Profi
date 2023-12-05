@@ -230,13 +230,26 @@
                     <h2 class="title animated"><?php echo $section['title']; ?></h2>
                 <?php endif; ?>
 
-                <?php if(!empty($section['slider'])): ?>
+                <?php if(!isArrayEmpty($section['slider'])): ?>
                     <div class="splide mt-[50px]">
                         <div class="splide__track">
                             <ul class="splide__list">
                                 <?php $__currentLoopData = $section['slider']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $slide): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <li class="splide__slide">
-                                        <img src="<?php echo $slide['slide']['url']; ?>" alt="<?php echo $slide['slide']['alt']; ?>">
+                                        <?php if(!empty($slide['slide']['image']['link'])): ?>
+                                            <?php
+                                                if (!empty($slide['slide']['link']['url'])) {
+                                                    $link = $slide['slide']['link']['url'];
+                                                } else {
+                                                    $link = '';
+                                                }
+
+                                                $target = (!empty($slide['slide']['link']['target'])) ? "target='_blank'" : ''
+                                            ?>
+                                            <a href="<?php echo $link; ?>" <?php echo e($target); ?>>
+                                                <img src="<?php echo $slide['slide']['image']['url']; ?>" alt="<?php echo $slide['slide']['image']['alt']; ?>">
+                                            </a>
+                                        <?php endif; ?>
                                     </li>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
