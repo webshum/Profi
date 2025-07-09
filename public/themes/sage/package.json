@@ -1,23 +1,30 @@
 {
+  "name": "sage",
   "private": true,
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "translate": "npm run translate:pot && npm run translate:update",
+    "translate:pot": "wp i18n make-pot . ./resources/lang/sage.pot --include=\"theme.json,patterns,app,resources\"",
+    "translate:update": "for file in ./resources/lang/*.po; do wp i18n update-po ./resources/lang/sage.pot $file; done",
+    "translate:compile": "npm run translate:mo && npm run translate:js",
+    "translate:js": "wp i18n make-json ./resources/lang --pretty-print",
+    "translate:mo": "wp i18n make-mo ./resources/lang ./resources/lang"
   },
   "devDependencies": {
-    "@roots/sage": "6.7.3",
-    "@vitejs/plugin-vue": "^4.4.0",
-    "autoprefixer": "^10.4.16",
-    "install": "^0.13.0",
-    "npm": "^10.2.0",
-    "postcss": "^8.4.31",
-    "sass": "^1.69.0",
-    "tailwindcss": "^3.3.3"
+    "@roots/vite-plugin": "^1.0.2",
+    "@splidejs/splide": "^4.1.4",
+    "@tailwindcss/vite": "^4.0.9",
+    "laravel-vite-plugin": "^1.2.0",
+    "tailwindcss": "^4.0.9",
+    "vite": "^6.2.0"
   },
   "dependencies": {
-    "@splidejs/splide": "^4.1.4",
-    "vite": "^4.4.11",
-    "vue": "^3.3.4"
+    "@vitejs/plugin-vue": "^6.0.0",
+    "vue": "^3.5.17"
   }
 }

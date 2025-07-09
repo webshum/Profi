@@ -34,7 +34,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 	<div id="checkout-1" class="show">
 		<?php if ( $checkout->get_checkout_fields() ) : ?>
 
-			<h4 class="title">Rechnungs oder Lieferadresse festlegen</h4>
+			<h4 class="title">Вкажіть свої дані і наш менеджер узгодить деталі</h4>
 
 			<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
 
@@ -49,11 +49,12 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 					<div class="controls flex items-center justify-between mt-[50px]">
 						<a href="#" class="btn-popup btn-back" data-popup="cart">
 							<span>
-								<?php esc_html_e( 'Weiter einkaufen', 'woocommerce' ); ?>
+								<?php esc_html_e( 'Продовжити покупки', 'woocommerce' ); ?>
 							</span>
 						</a>
 
-						<a href="#" class="button button-next"><span>Weitermachen</span></a>
+						<!-- <a href="#" class="button button-next"><span>Weitermachen</span></a> -->
+						<button type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="Підтвердити замовлення" data-value="Підтвердити замовлення">Підтвердити замовлення</button>
 					</div>
 				</div>
 			</div>
@@ -66,7 +67,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 	</div>
 
 	<div id="checkout-2">
-		<h4 class="title text-center"><?php esc_html_e( 'Zahlart festlegen', 'woocommerce' ); ?></h4>
+		<h4 class="title text-center"><?php esc_html_e( 'Вибрати спосіб оплати', 'woocommerce' ); ?></h4>
 		
 		<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
 

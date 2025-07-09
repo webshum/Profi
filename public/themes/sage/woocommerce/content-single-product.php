@@ -88,7 +88,7 @@ if ( post_password_required() ) {
                     <?php foreach(get_field('tab') as $key => $tab) : ?>
                         <li class="splide__slide" data-index="<?= $key ?>"><?= $tab['name']; ?></li>
                     <?php endforeach; ?>
-                    <li class="splide__slide" data-index="3">Bewertungen</li>
+                   
                 </ul>
             </div>
         </div>
@@ -98,7 +98,7 @@ if ( post_password_required() ) {
                 <div data-index="<?= $key ?>"><?= $tab['content']; ?></div>
             <?php endforeach; ?>
 
-            <div data-index="3">REVIEWS</div>
+           
         </div>
     </div>
 <?php endif; ?>

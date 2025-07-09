@@ -3,7 +3,12 @@
 @section('content')
 <div class="page">
     <div class="center">
-        {{ the_content() }}
+        @if(have_posts())
+	        @while(have_posts())
+	            @php the_post(); @endphp
+	        	{{ the_content() }}
+	        @endwhile
+	    @endif
     </div>
 </div>
 @endsection

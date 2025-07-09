@@ -16,7 +16,7 @@ Template Name: Blog
             {!! the_content() !!}
 
             @if($posts->have_posts())
-                <div class="grid grid-cols-2 gap-[20px] mt-[50px]">
+                <div class="grid grid-cols-2 gap-[20px] mt-[50px] js-blog">
                     @while($posts->have_posts())
                         @php($posts->the_post())
 
@@ -37,5 +37,39 @@ Template Name: Blog
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    let page = 2;
+    let loading = false;
+
+    window.addEventListener('scroll', () => {
+        if (window.innerHeight + window.scrollY >= document.querySelector('.js-blog').offsetHeight - 200 && !loading) {
+            loading = true;
+
+            fetch(ajax_url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `action=lazy_load_posts&page=${page}`,
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data.trim() === 'end') {
+                    console.log('Більше постів немає.');
+                } else {
+                    document.querySelector('.js-blog').insertAdjacentHTML('beforeend', data);
+                    page++;
+                    loading = false;
+                }
+            })
+            .catch(error => {
+                console.error('Помилка завантаження:', error);
+            });
+        }
+    });
+});
+</script>
 
 @endsection

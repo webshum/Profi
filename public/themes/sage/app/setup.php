@@ -6,22 +6,56 @@
 
 namespace App;
 
-use function Roots\bundle;
+use Illuminate\Support\Facades\Vite;
 
 /**
- * Register the theme assets.
+ * Inject styles into the block editor.
+ *
+ * @return array
+ */
+add_filter('block_editor_settings_all', function ($settings) {
+    $style = Vite::asset('resources/css/editor.css');
+
+    $settings['styles'][] = [
+        'css' => "@import url('{$style}')",
+    ];
+
+    return $settings;
+});
+
+/**
+ * Inject scripts into the block editor.
  *
  * @return void
  */
-add_action('wp_enqueue_scripts', function () {
-    $asset_ver = time();
+add_filter('admin_head', function () {
+    if (! get_current_screen()?->is_block_editor()) {
+        return;
+    }
 
-    // wp_enqueue_script( 'vue-js', get_stylesheet_directory_uri() . '/dist/scripts/vue.js', null, $asset_ver, true );
+    $dependencies = json_decode(Vite::content('editor.deps.json'));
 
-    // wp_enqueue_style( 'main-css', get_stylesheet_directory_uri() . '/dist/vue.css', [], $asset_ver);
+    foreach ($dependencies as $dependency) {
+        if (! wp_script_is($dependency)) {
+            wp_enqueue_script($dependency);
+        }
+    }
 
-    wp_enqueue_script( 'main', get_stylesheet_directory_uri() . '/resources/scripts/vue.js', null, $asset_ver, true );
-}, 100);
+    echo Vite::withEntryPoints([
+        'resources/js/editor.js',
+    ])->toHtml();
+});
+
+/**
+ * Use the generated theme.json file.
+ *
+ * @return string
+ */
+add_filter('theme_file_path', function ($path, $file) {
+    return $file === 'theme.json'
+        ? public_path('build/assets/theme.json')
+        : $path;
+}, 10, 2);
 
 /**
  * Register the initial theme setup.
@@ -29,18 +63,6 @@ add_action('wp_enqueue_scripts', function () {
  * @return void
  */
 add_action('after_setup_theme', function () {
-    /**
-     * Enable features from the Soil plugin if activated.
-     *
-     * @link https://roots.io/plugins/soil/
-     */
-    add_theme_support('soil', [
-        'clean-up',
-        'nav-walker',
-        'nice-search',
-        'relative-urls',
-    ]);
-
     /**
      * Disable full-site editing support.
      *

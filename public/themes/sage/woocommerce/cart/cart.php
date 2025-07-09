@@ -24,7 +24,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 	<div class="shop_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="0">
 		<div class="head">
-            <?php esc_attr_e( 'Warenkorb', 'cart_title' ); ?>      
+            <?php esc_attr_e( 'Кошик', 'cart_title' ); ?>      
         </div>
 
 			<?php do_action( 'woocommerce_before_cart_contents' ); ?>
@@ -91,7 +91,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
                                     <?php if ($_product->get_sku()) : ?>
                                         <div class="sku">
-                                            <?php esc_attr_e( 'Artikelnummer', 'sku' ); ?>
+                                            <?php esc_attr_e( 'Артикул', 'sku' ); ?>
 
                                             <?= $_product->get_sku(); ?>
                                         </div>
@@ -109,7 +109,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
                                     <div class="product-price" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
                                         <div class="label">
-                                            <?php esc_attr_e( 'Einzelpreis', 'new_price' ); ?>
+                                            <?php esc_attr_e( 'Ціна за одиницю', 'new_price' ); ?>
                                         </div>
                                         <?php
                                             echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
@@ -118,7 +118,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
                                     <div class="product-quantity" data-product_id="<?= $product_id; ?>" data-title="<?php esc_attr_e( 'Quantity', 'woocommerce' ); ?>" data-item_key="<?= $cart_item_key ?>">
                                         <div class="label">
-                                            <?php esc_attr_e( 'Menge', 'quantyti' ); ?>
+                                            <?php esc_attr_e( 'Кількість', 'quantyti' ); ?>
                                         </div>
 
                                         <div class="number-field">
@@ -152,7 +152,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
                                     <div class="product-subtotal" data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>">
                                         <div class="label">
-                                            <?php esc_attr_e( 'Preis', 'old_price' ); ?>
+                                            <?php esc_attr_e( 'Ціна', 'old_price' ); ?>
                                         </div>
                                         <div class="wrap">
                                             <?php
@@ -195,7 +195,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 <div class="foot-cart">
     <div>
         <div class="popup-close">
-            <span>Weiter einkaufen</span>
+            <span><?php _e('Продовжити покупки', 'sage'); ?></span>
         </div>
     </div>
 
@@ -203,7 +203,7 @@ do_action( 'woocommerce_before_cart' ); ?>
         <?php do_action( 'woocommerce_cart_contents' ); ?>
 
         <div colspan="6" class="actions">
-            <h3><?php esc_attr_e( 'Gutscheincode', 'cupon' ); ?></h3>
+            <h3><?php esc_attr_e( 'Промокод', 'cupon' ); ?></h3>
             <?php if ( wc_coupons_enabled() ) { ?>
                 <div class="coupon">
                     <label for="coupon_code" class="screen-reader-text"><?php esc_html_e( 'Coupon:', 'woocommerce' ); ?></label> <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>" /> <button type="submit" class="button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"><?php esc_html_e( 'Apply coupon', 'woocommerce' ); ?></button>

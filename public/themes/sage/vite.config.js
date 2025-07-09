@@ -1,40 +1,40 @@
 import { defineConfig } from 'vite'
+import tailwindcss from '@tailwindcss/vite';
+import laravel from 'laravel-vite-plugin'
 import vue from '@vitejs/plugin-vue'
-import glob from 'glob';
+import { wordpressPlugin, wordpressThemeJson } from '@roots/vite-plugin';
 
-// Отримайте всі .js файли з папки scripts і .css файли з папки styles
-const scriptFiles = glob.sync('resources/scripts/**/*.js');
-const styleFiles = glob.sync('resources/styles/**/*.css');
-
-// Створіть об'єкт input для Rollup
-const inputFiles = {};
-
-scriptFiles.forEach(file => {
-    inputFiles[file.replace('resources/', '')] = file;
-});
-
-styleFiles.forEach(file => {
-    inputFiles[file.replace('resources/', '')] = file;
-});
-
-// https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [vue()],
-	build: {
-	    rollupOptions: {
-	    	input: inputFiles,
-	    	output: {
-	    		assetFileNames: '[name].[ext]',
-	    		entryFileNames: '[name]'
-	    	}
-	    },
-	    outDir: 'dist',
-	},
-	css: {
-	    preprocessorOptions: {
-		    scss: {
-		       	additionalData: `@import "resources/styles/main.scss";`
-		    }
-	    }
-	}
+  base: '/app/themes/sage/public/build/',
+  plugins: [
+    vue(),
+    tailwindcss(),
+    laravel({
+      input: [
+        'resources/css/app.css',
+        'resources/js/app.js',
+        'resources/css/editor.css',
+        'resources/js/editor.js',
+      ],
+      refresh: true,
+    }),
+
+    wordpressPlugin(),
+
+    // Generate the theme.json file in the public/build/assets directory
+    // based on the Tailwind config and the theme.json file from base theme folder
+    wordpressThemeJson({
+      disableTailwindColors: false,
+      disableTailwindFonts: false,
+      disableTailwindFontSizes: false,
+    }),
+  ],
+  resolve: {
+    alias: {
+      '@scripts': '/resources/js',
+      '@styles': '/resources/css',
+      '@fonts': '/resources/fonts',
+      '@images': '/resources/images',
+    },
+  },
 })

@@ -36,6 +36,11 @@ if ( $product->is_in_stock() ) : ?>
 		do_action( 'woocommerce_before_add_to_cart_quantity' );
         ?>
 
+        <?php if (!isArrayEmpty(get_field('color'))) : ?>
+	        <input type="hidden" name="color_name" value="<?= get_field('color')[0]['title'] ?>">
+	        <input type="hidden" name="color_image" value="<?= get_field('color')[0]['image']['url'] ?>">
+	    <?php endif; ?>
+
         <div class="number-input">
         	<div class="inner">
 	            <?php
@@ -63,7 +68,8 @@ if ( $product->is_in_stock() ) : ?>
 	        	}
 	        ?>
 
-            <p data-count="<?= $count ?>">розхід на к-сть квадратів <span><?= $count ?></span></p>
+			<p data-count="<?= $count ?>"><?= __('Розхід на к-сть квадратів', 'sage') ?> <span><?= $count ?></span></p>
+
         </div>
 
         <?php

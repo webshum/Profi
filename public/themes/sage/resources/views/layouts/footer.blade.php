@@ -1,3 +1,4 @@
+@include('partiales.what-painting')
 @include('partiales.form-subscribe')
 
 <footer id="footer" class="py-[90px]">
@@ -42,6 +43,48 @@
         </div>
     </div>
 </footer>
+
+<style>
+    @media (max-width: 1300px) {
+        .menu>ul>li>a {padding: 27px 15px;}
+    }
+    
+    @media (max-width: 1100px) {
+        #header {margin-right: 0 !important;}
+        #header .logo svg {
+            width: 160px;
+            height: 30px;
+        }
+        
+        .menu>ul>li>a {
+            padding: 27px 7px;
+            font-size: 13px;
+        }
+        
+        #header .head-cart {margin-left: 10px;}
+    }
+    
+    @media (max-width: 991px) {
+        .home-gallery {padding: 70px 0;}
+    }
+    
+    @media (max-width: 700px) {
+        #header .logo svg {
+            width: 250px;
+            height: 45px;
+        }
+        .menu>ul>li>a {
+            padding: 7px 15px;
+            font-size: 20px;
+        }
+        .menu>ul .sub-menu a {font-size: 15px;}
+        .menu .head-cart {margin-top: 15px;}
+        .menu .head-cart svg {
+            width: 40px;
+            height: 40px;
+        }
+    }
+</style>
 
 <div class="popup-overlay"></div>
 @include('layouts.popup-cart')

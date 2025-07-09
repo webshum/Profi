@@ -1,5 +1,7 @@
 <?php
 
+use Roots\Acorn\Application;
+
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
@@ -29,18 +31,11 @@ require $composer;
 |
 */
 
-try {
-    \Roots\bootloader();
-} catch (Throwable $e) {
-    wp_die(
-        __('You need to install Acorn to use this theme.', 'sage'),
-        '',
-        [
-            'link_url' => 'https://docs.roots.io/acorn/2.x/installation/',
-            'link_text' => __('Acorn Docs: Installation', 'sage'),
-        ]
-    );
-}
+Application::configure()
+    ->withProviders([
+        App\Providers\ThemeServiceProvider::class,
+    ])
+    ->boot();
 
 /*
 |--------------------------------------------------------------------------
@@ -63,20 +58,6 @@ collect(['setup', 'filters'])
             );
         }
     });
-
-/*
-|--------------------------------------------------------------------------
-| Enable Sage Theme Support
-|--------------------------------------------------------------------------
-|
-| Once our theme files are registered and available for use, we are almost
-| ready to boot our application. But first, we need to signal to Acorn
-| that we will need to initialize the necessary service providers built in
-| for Sage when booting.
-|
-*/
-
-add_theme_support('sage');
 
 /*
 |--------------------------------------------------------------------------
@@ -255,19 +236,6 @@ function remove_description_tab( $tabs ) {
 
 /*
 |--------------------------------------------------------------------------
-| ADD MODULE TO TAG SCRIPT
-|--------------------------------------------------------------------------
-*/
-function add_module_to_script($tag, $handle, $src) {
-    if ('vue-js' === $handle) {
-        $tag = '<script type="module" src="' . esc_url($src) . '"></script>';
-    }
-    return $tag;
-}
-add_filter('script_loader_tag', 'add_module_to_script', 10, 3);
-
-/*
-|--------------------------------------------------------------------------
 | ADD CONTENT AFTER TITLE
 |--------------------------------------------------------------------------
 */
@@ -279,9 +247,14 @@ function add_after_title_content() {
         <?= $product->get_short_description(); ?>
     </div>
 
-    <div class="choise-color">
-        <div class="view-color"></div>
-        <a href="#" class="btn-popup" data-popup="color">Змінити колір</a>
+    <div class="choise-color btn-popup" data-popup="color">
+        <?php if (!isArrayEmpty(get_field('color'))) : ?>
+            <div class="view-color">
+                <img src="<?= get_field('color')[0]['image']['url'] ?>" alt="">
+            </div>
+        <?php endif; ?>
+
+        <a href="#"><?php _e('Змінити колір', 'sage'); ?></a>
     </div>
 
     <?php
@@ -344,7 +317,7 @@ function send_form() {
     $tel = $_POST['tel'];
 
     $to = get_option('admin_email');
-    $subject = 'Новий лист';
+    $subject = 'Консультація з сайту profiproteсt.com.ua';
     $body = 'Name: ' . $_POST['name'] . '<br>';
     $body .= 'Tel: ' . $_POST['tel'] . '<br>';
     $headers = ['Content-Type: text/html; charset=UTF-8'];
@@ -393,3 +366,49 @@ function checkout_fields($fields){
 |--------------------------------------------------------------------------
 */
 add_filter('woocommerce_coupons_enabled', '__return_false');
+
+/*
+|--------------------------------------------------------------------------
+| Ajax load blog
+|--------------------------------------------------------------------------
+*/
+function lazy_load_posts() {
+    $paged = isset($_POST['page']) ? intval($_POST['page']) : 1;
+    $args = array(
+        'post_type'      => 'post', 
+        'posts_per_page' => 4,     
+        'paged'          => $paged, 
+    );
+
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            ?>
+            <a href="<?php the_permalink() ?>" class="card">
+                <div class="descrn">
+                    <?php the_title() ?>
+                    <?php echo $paged; ?>
+                </div>
+
+                <?php if(!empty(get_field('background'))) : ?>
+                    <div class="image">
+                        <img src="<?php echo get_field('background')['url'] ?>" alt="<?php echo get_field('background')['alt'] ?>">
+                    </div>
+                <?php endif; ?>
+            </a>
+            <?php
+        }
+    } else {
+        echo 'end'; 
+    }
+
+    wp_die(); 
+}
+add_action('wp_ajax_lazy_load_posts', 'lazy_load_posts');          
+add_action('wp_ajax_nopriv_lazy_load_posts', 'lazy_load_posts');  
+
+add_action('init', function() {
+    require_once get_theme_file_path('resources/php-translations/wpml-register-strings.php');
+});

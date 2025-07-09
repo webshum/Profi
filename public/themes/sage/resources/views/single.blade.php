@@ -1,18 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="single-post">
-    <div class="single-home">
-        <div class="center">
-            <div class="content animated">
-                {!! the_content() !!}
-            </div>
 
-            <div class="image animated scale-down">
-                {{ the_post_thumbnail() }}
-            </div>
-        </div>
+@if(have_posts())
+	        
+<div class="single-post">
+    <div class="center">
+    @while(have_posts())
+        @php the_post(); @endphp
+            {!! the_content() !!}
+        @endwhile
+    @endif
     </div>
+        
+    <!--<div class="single-home">-->
+    <!--    <div class="center">-->
+    <!--        <div class="content animated">-->
+    <!--            {!! the_content() !!}-->
+    <!--        </div>-->
+
+    <!--        <div class="image animated scale-down">-->
+    <!--            {{ the_post_thumbnail() }}-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</div>-->
 
     @if(!isArrayEmpty(get_field('text_column')))
         @php($column = get_field('text_column'))
@@ -254,4 +265,5 @@
         </div>
     @endif
 </div>
+
 @endsection

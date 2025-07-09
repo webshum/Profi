@@ -1,38 +1,25 @@
 {
-    "name": "wordplate/wordplate",
-    "description": "A WordPress stack with sprinkles on top",
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "vinkla/wordplate",
+    "description": "The WordPlate boilerplate",
+    "license": "MIT",
+    "type": "project",
     "keywords": [
         "wordplate",
-        "wordpress",
-        "boilerplate"
+        "wordpress"
     ],
-    "license": "MIT",
     "require": {
-        "php": "^7.4 || ^8.0",
-        "wordplate/framework": "^10.0"
+        "php": "^8.2",
+        "composer/installers": "^2.3",
+        "roots/bedrock-autoloader": "^1.0.4",
+        "roots/wordpress": "^6.8.1",
+        "symfony/http-foundation": "^7.3",
+        "vinkla/headache": "^3.5",
+        "vlucas/phpdotenv": "^5.6",
+        "wpackagist-plugin/clean-image-filenames": "^1.5"
     },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true,
-        "allow-plugins": {
-            "johnpbloch/wordpress-core-installer": true,
-            "composer/installers": true
-        }
-    },
-    "extra": {
-        "installer-paths": {
-            "public/mu-plugins/{$name}": [
-                "type:wordpress-muplugin"
-            ],
-            "public/plugins/{$name}": [
-                "type:wordpress-plugin"
-            ],
-            "public/themes/{$name}": [
-                "type:wordpress-theme"
-            ]
-        },
-        "wordpress-install-dir": "public/wordpress"
+    "require-dev": {
+        "symfony/var-dumper": "^7.3"
     },
     "repositories": [
         {
@@ -44,6 +31,37 @@
             ]
         }
     ],
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "autoload": {
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "roots/wordpress-core-installer": true
+        },
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "installer-paths": {
+            "public/mu-plugins/{$name}": [
+                "type:wordpress-muplugin",
+                "wpackagist-plugin/clean-image-filenames"
+            ],
+            "public/plugins/{$name}": [
+                "type:wordpress-plugin"
+            ],
+            "public/themes/{$name}": [
+                "type:wordpress-theme"
+            ]
+        },
+        "wordpress-install-dir": "public/wordpress"
+    },
     "scripts": {
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""

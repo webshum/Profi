@@ -5,7 +5,7 @@
         <svg width="19" height="19"><use xlink:href="#cross"></use></svg>
     </button>
     <div class="inner">
-    	<h3>Выбрать цвет</h3>
+		<h3>{{ __('Виберіть колір', 'sage') }}</h3>
     	<div class="wrap">
     		@if(!isArrayEmpty(get_field('color')))
 	    		<div class="list">
@@ -28,7 +28,7 @@
 	    			<div class="image">
 	    				<img src="{!! get_field('color')[0]['image']['url'] !!}" alt="{!! get_field('color')[0]['image']['alt'] !!}">
 	    			</div>
-	    			<a href="#" class="button popup-close"><span>Готово</span></a>
+	    			<a href="#" class="button popup-close"><span>{{ __('Готово', 'sage') }}</span></a>
 	    		</div>
     		@endif
     	</div>
