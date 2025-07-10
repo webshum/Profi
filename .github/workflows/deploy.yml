@@ -29,6 +29,7 @@ jobs:
                       git pull origin develop --force 
                       composer install --no-interaction --prefer-dist --optimize-autoloader
                       cd public/themes/sage 
+                      composer install --no-interaction --prefer-dist --optimize-autoloader
                       npm install
                       npm run build
 
@@ -41,7 +42,11 @@ jobs:
                   password: "${{ secrets.PROD_PASSWORD }}"
                   script: |
                       cd /alumwork.de/httpdocs
-                      git pull origin main --force
+                      git fetch origin
+                      git reset --hard origin/main
+                      git clean -fd 
+                      git pull origin main --force 
+                      composer install --no-interaction --prefer-dist --optimize-autoloader
 
             - name: Send Telegram message
               if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'

@@ -1,0 +1,36 @@
+{
+  "editor.deps.json": {
+    "file": "assets/editor.deps-BqrDAOEV.json",
+    "src": "editor.deps.json"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-DzleDFgx.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/images/arr-slide.svg": {
+    "file": "assets/arr-slide-Dg3XpgvZ.svg",
+    "src": "resources/images/arr-slide.svg"
+  },
+  "resources/images/arr-splide.svg": {
+    "file": "assets/arr-splide-0sBeCExU.svg",
+    "src": "resources/images/arr-splide.svg"
+  },
+  "resources/images/bg-home-slide.jpg": {
+    "file": "assets/bg-home-slide-BRC1dT_S.jpg",
+    "src": "resources/images/bg-home-slide.jpg"
+  },
+  "resources/images/bg-home.png": {
+    "file": "assets/bg-home-DLlsq__S.png",
+    "src": "resources/images/bg-home.png"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-DF6uZLv9.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "css": [
+      "assets/app-D7wrQ6zr.css"
+    ]
+  }
+}
