@@ -402,7 +402,7 @@ function lazy_load_posts() {
             $query->the_post();
             ?>
             <a href="<?php the_permalink() ?>" class="card">
-                <div class="descrn">
+                <div class="descr" style="opacity: 1; transform: scale(1);">
                     <?php the_title() ?>
                     <?php echo $paged; ?>
                 </div>

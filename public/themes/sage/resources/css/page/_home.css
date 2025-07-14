@@ -382,6 +382,8 @@
         font-size: 24px;
         text-transform: uppercase;
         color: #fff;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 
     @media (max-width: 1500px) {
