@@ -421,6 +421,7 @@ function lazy_load_posts() {
 
     wp_die(); 
 }
+
 add_action('wp_ajax_lazy_load_posts', 'lazy_load_posts');          
 add_action('wp_ajax_nopriv_lazy_load_posts', 'lazy_load_posts');  
 
