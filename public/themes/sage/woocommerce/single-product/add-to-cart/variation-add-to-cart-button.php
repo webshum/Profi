@@ -18,7 +18,7 @@ global $product;
 	do_action( 'woocommerce_before_add_to_cart_quantity' );
 	?>
 
-	<div class="number-input">
+	<!-- <div class="number-input">
 		<div class="inner">
 			<?php
 				woocommerce_quantity_input(
@@ -46,7 +46,7 @@ global $product;
         ?>
 
         <p data-count="<?= $count ?>">розхід на к-сть квадратів <span><?= $count ?></span></p>
-	</div>
+	</div> -->
 
 	<?php
 	do_action( 'woocommerce_after_add_to_cart_quantity' );

@@ -41,7 +41,7 @@ if ( $product->is_in_stock() ) : ?>
 	        <input type="hidden" name="color_image" value="<?= get_field('color')[0]['image']['url'] ?>">
 	    <?php endif; ?>
 
-        <div class="number-input">
+       <!--  <div class="number-input">
         	<div class="inner">
 	            <?php
 	    		woocommerce_quantity_input(
@@ -69,8 +69,7 @@ if ( $product->is_in_stock() ) : ?>
 	        ?>
 
 			<p data-count="<?= $count ?>"><?= __('Розхід на к-сть квадратів', 'sage') ?> <span><?= $count ?></span></p>
-
-        </div>
+        </div> -->
 
         <?php
 		do_action( 'woocommerce_after_add_to_cart_quantity' );
