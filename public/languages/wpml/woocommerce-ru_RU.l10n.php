@@ -1,0 +1,2 @@
+<?php
+return ['messages'=>['Admin menu nameHome'=>'Главная','Billing details'=>'Платежные данные','Ihre Bestellung wurde versendet eine Benachrichtigung wird per E-Mail verschickt'=>'Ваш заказ отправлен. Уведомление будет отправлено по электронной почте.','Notes about your order, e.g. special notes for delivery.'=>'Заметки для вашего заказа, например специальные заметки для доставки.','Order notes'=>'Заметки для заказа','Proceed to checkout'=>'Перейти к оформлению','Total'=>'Всего:','Total:'=>'Всего:','Продовжити покупки'=>'Продолжить покупки']];

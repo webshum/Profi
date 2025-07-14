@@ -1,0 +1,2 @@
+<?php
+return ['items'=>['General Settings'=>['urls'=>[],'names'=>['group-394-title-52f4393e1b52ba63e27310ca92ba098c'],'cmp'=>['WordPress',3]],'Title form subscribe'=>['urls'=>[],'names'=>['field-396-label-ac2f05d38688e26bc4aa09f1a0af58fe'],'cmp'=>['WordPress',3]],'Subtitle form subscribe'=>['urls'=>[],'names'=>['field-397-label-703c4b277590ef59c8a3c0f86946d33f'],'cmp'=>['WordPress',3]],'Сonsumption'=>['urls'=>[],'names'=>['field-395-label-43544b50f3c2104429abf926195cf1f3'],'cmp'=>['WordPress',3]]]];

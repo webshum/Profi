@@ -1,4 +1,3 @@
-languages
 mu-plugins/*
 !mu-plugins/mu-plugins.php
 plugins/*
