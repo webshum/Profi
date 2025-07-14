@@ -431,3 +431,11 @@ add_action('init', function() {
 add_action('init', function () {
     load_plugin_textdomain('woocommerce', false, WP_LANG_DIR . '/plugins/');
 });
+
+
+add_filter( 'woocommerce_dropdown_variation_attribute_options_args', function( $args ) {
+    if ( empty( $args['selected'] ) && ! empty( $args['options'] ) ) {
+        $args['selected'] = $args['options'][0];
+    }
+    return $args;
+});
