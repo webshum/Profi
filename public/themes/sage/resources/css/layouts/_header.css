@@ -42,7 +42,7 @@
         }
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 991px) {
         margin-right: 0;
 
         .center {padding: 20px;}
@@ -52,7 +52,8 @@
             height: 10px;
             background: none;
             cursor: pointer;
-            z-index: 9991;
+            z-index: 99999;
+            display: block;
 
             span {
                 display: block;
@@ -84,6 +85,9 @@
             padding: 27px 20px;
         }
         & > li > a:hover {color: var(--akcent);}
+
+        .current-menu-item a,
+        .wpml-ls-current-language a {font-weight: bold;}
 
         .menu-item-has-children > a:after {
             content: '';
@@ -130,19 +134,20 @@
         }
     }
 
-    @media (max-width: 991px) {
+    @media (max-width: 1500px) {
         & > ul > li > a {
-            padding: 39px 35px;
+            padding: 27px 10px !important;
+            font-size: 16px;
         }
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 991px) {
         position: fixed;
         top: 0;
         right: 0;
         left: 0;
         bottom: 0;
-        z-index: 999;
+        z-index: 9999;
         background: var(--gray-black);
         justify-content: center;
         align-items: center;
@@ -151,10 +156,10 @@
 
         & > ul {display: block;}
         & > ul > li > a {
-            padding: 20px 0;
+            padding: 7px 15px !important;
             font-weight: bold;
             text-align: center;
-            font-size: 30px;
+            font-size: 20px !important;
             justify-content: center;
         }
         & > ul > li > a svg {
@@ -175,23 +180,23 @@
         & > ul .sub-menu a {
             display: block;
             padding: 10px 0;
-            font-size: 20px;
+            font-size: 15px;
             font-weight: 500;
             border-bottom: none;
         }
 
         .head-cart {
             margin-left: 0 !important;
-            margin-top: 50px;
+            margin-top: 15px;
         }
         .head-cart svg {
-            width: 60px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
         }
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 991px) {
     .menu-open .menu {display: flex;}
     .menu-open .btn-menu {
         position: relative;

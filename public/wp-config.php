@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+define('WP_CACHE', true);
+
 require __DIR__ . '/../vendor/autoload.php';
 
 use Dotenv\Dotenv;

@@ -60,7 +60,11 @@
     }
 
     @media (max-width: 1300px) {
-        .content {min-height: 600px;}
+        .content {
+            min-height: 600px;
+            background: #1A2539;
+            padding: 0 15px;
+        }
         .content .title {font-size: 60px;}
         .content .descr {font-size: 17px;}
         .content .descr p br {display: none;}
@@ -68,7 +72,12 @@
 
     @media (max-width: 991px) {
         .center {padding: 0 0;}
-
+        .content {
+            text-align: center;
+            align-items: center;
+            width: 100%;
+        }
+        
         .image {
             padding: 90px 75px;
             position: static;
@@ -99,6 +108,10 @@
     }
 
     @media (max-width: 700px) {
+        .content {
+            min-height: 400px;
+            .title {font-size: 40px;}
+        }
         .image {padding: 30px 60px 45px 60px;}
         .image h1 {
             font-size: 36px;
@@ -215,7 +228,7 @@
         .center {
             grid-template-columns: 0.8fr 1fr;
         }
-        .splide.is-initialized:not(.is-active) .splide__list {gap: 25px;}
+        .splide.is-initialized:not(.is-active) .splide__list {gap: 15px;}
     }
 
     @media (max-width: 991px) {
@@ -452,7 +465,7 @@
     }
 
     @media (max-width: 700px) {
-        padding: 100px 0;
+        padding: 100px 0 0 0;
 
         h2.title {text-align: left;}
 
@@ -582,11 +595,12 @@
         opacity: 0;
     }
 
-    @media screen and (max-width: 1000px) {
+    @media screen and (max-width: 991px) {
         .gallery-wrap {
             column-count: 3;
             column-gap: 10px;
             margin-top: 40px;
+            padding-bottom: 50px;
         }
 
         .gallery-item .item-overlay {
@@ -600,6 +614,8 @@
     }
 
     @media screen and (max-width: 767px) {
+        padding-bottom: 0;
+
         .gallery-wrap {
             column-count: 1;
             column-gap: 10px;

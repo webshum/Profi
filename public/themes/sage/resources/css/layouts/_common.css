@@ -34,7 +34,13 @@ img {
     height: auto;
 }
 
-.subtitle {margin-top: 5px;}
+.fl-html {
+    iframe {
+        width: 100%;
+    }
+}
+
+.subtitle {margin-top: 15px;}
 
 @media (max-width: 1500px) {
     body {font-size: 17px;}
@@ -55,7 +61,8 @@ img {
     .s-700 {display: block !important;}
 }
 
-#main-wrapper {overflow: hidden;}
+#main-wrapper {overflow-x: hidden;}
+.woocommerce-checkout #main-wrapper {overflow: visible;}
 
 .center {
     max-width: 1430px;
@@ -123,6 +130,8 @@ img {
 
     @media (max-width: 700px) {
         height: 50px !important;
+        font-size: 15px !important;
+        br {display: none;}
     }
 }
 

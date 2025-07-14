@@ -1,5 +1,7 @@
+import { createApp } from 'vue/dist/vue.esm-bundler';
 import { addToCart, updateCart, getCart } from './cart.js';
-import { step } from './checkout.js';
+import i18n from './language.js';
+import Checkout from './components/Checkout.vue';
 import { 
 	accordeon, 
 	menu, 
@@ -9,7 +11,6 @@ import {
 	countСonsumption,
 	submitForm
 } from './main.js';
-import { createApp } from 'vue';
 
 window.onload = () => {
 	menu();
@@ -19,6 +20,7 @@ window.onload = () => {
 	addToCart();
 	updateCart();
 	getCart();
+
 	if (document.querySelector('.product-tab') != null) productTab();
 	if (document.querySelector('.woocommerce-checkout') != null) step();
 	if (document.querySelector('.number-input') != null) countСonsumption();
@@ -31,4 +33,7 @@ window.onload = () => {
 	}
 }
 
-createApp(app).mount('#vue');
+const app = createApp({});
+app.component('checkout', Checkout);
+app.use(i18n);
+app.mount('#np-checkout');

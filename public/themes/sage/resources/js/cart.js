@@ -129,9 +129,9 @@ function updateCartQty(item_key, quantity, qty, product_id) {
         if (xhr.status >= 200 && xhr.status < 300) {
             const result = JSON.parse(xhr.responseText);
             const item = qty.closest('.cart_item');
-            
+            console.log(result.cart_total);
             item.querySelector('.product-subtotal .wrap').innerHTML = result.product_subtotal;
-            document.querySelector('.order-total strong').innerHTML = result.cart_total;
+            document.querySelector('.order-total td strong').innerHTML = result.cart_total;
         } else {
             console.log('Error!');
         }

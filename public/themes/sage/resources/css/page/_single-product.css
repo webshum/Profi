@@ -115,6 +115,7 @@
         display: flex;
         flex-direction: column;
         margin-left: 0;
+        width: 100%;
     }
     .product-type-variable .group > .price {display: none !important;}
     .summary .variations_form {margin-top: 10px;}
@@ -502,6 +503,8 @@
     margin-top: 120px;
     position: relative;
 
+    p + p {margin-top: 15px;}
+
     .splide.is-initialized:not(.is-active) .splide__list {
         display: flex;
     }
@@ -519,6 +522,7 @@
         cursor: pointer;
         transition: all 0.3s;
         position: relative;
+        white-space: nowrap;
         &:hover,
         &.active {color: var(--color);}
     }
@@ -570,6 +574,14 @@
         grid-template-columns: 0.5fr 1fr 1fr;
         margin-top: 40px;
         gap: 40px;
+
+        .list .image {display: flex;}
+        .list .image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: right bottom;
+        }
     }
     .contents .grid .box {
         background: var(--gray);
@@ -677,6 +689,9 @@
     @media (max-width: 700px) {
         .splide__pagination {display: none;}
 
+        .controls {
+            border-bottom: none;
+        }
         .controls li {
             padding: 15px 15px;
             font-size: 16px;
@@ -755,6 +770,7 @@
     .content ul li {
         position: relative;
         padding-left: 15px;
+        & + li {margin-top: 15px;}
         &:after {
             content: '';
             display: block;
@@ -821,6 +837,7 @@
 
 /* -------- PRODUCT SLIDER -------- */
 .product-slider {
+    padding-bottom: 0 !important;
     .subtitle {margin-top: 10px;}
 
     .slide {
@@ -940,6 +957,49 @@
     }
 }
 
+.postid-1133 {
+    .contents .list {grid-template-columns: 1fr 1fr 1fr 1fr;}
+    .contents .grid .list .item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .contents .grid .list .image img {max-width: 100px;} 
+
+    .popup-color .inner .list .item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .popup-color .inner .list .image {text-align: center;}
+    .popup-color .inner .list .image img {
+        max-width: 100px;
+        object-fit: contain;
+    }
+
+    .popup-color .inner .view {
+        background: var(--gray);
+        padding: 40px 65px 40px 65px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .image {
+            display: flex;
+            justify-content: center;
+        }
+
+        img {
+            object-fit: contain;
+            max-width: 100px;
+        }
+    }
+
+    @media (max-width: 700px) {
+        .contents .list {grid-template-columns: 1fr 1fr 1fr;}
+    }
+}
 
 
 

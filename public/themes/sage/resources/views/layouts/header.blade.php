@@ -4,7 +4,7 @@
             <svg width="267" height="48"><use xlink:href="#logo"></use></svg>
         </a>
 
-        <button class="btn-menu hidden s-700">
+        <button class="btn-menu hidden">
             <span></span>
             <span></span>
             <span></span>

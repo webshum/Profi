@@ -34,7 +34,9 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 	<div id="checkout-1" class="show">
 		<?php if ( $checkout->get_checkout_fields() ) : ?>
 
-			<h4 class="title">Вкажіть свої дані і наш менеджер узгодить деталі</h4>
+			<h4 class="title">
+				<?php echo __('Вкажіть свої дані і наш менеджер узгодить деталі') ?>
+			</h4>
 
 			<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
 
@@ -54,7 +56,9 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 						</a>
 
 						<!-- <a href="#" class="button button-next"><span>Weitermachen</span></a> -->
-						<button type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="Підтвердити замовлення" data-value="Підтвердити замовлення">Підтвердити замовлення</button>
+						<button type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order"  data-value="<?php echo __('Підтвердити замовлення') ?>">
+							<?php echo __('Підтвердити замовлення') ?>
+						</button>
 					</div>
 				</div>
 			</div>
@@ -77,6 +81,8 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
 		<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
 	</div>
+
+	
 </form>
 
 <?php do_action( 'woocommerce_after_checkout_form', $checkout ); ?>

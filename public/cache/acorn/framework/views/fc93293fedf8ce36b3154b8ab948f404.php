@@ -1,5 +1,5 @@
 <div class="subscribe">
-    <div class="center grid grid-cols-2 !py-[105px]">
+    <div class="center grid grid-cols-2">
         <div class="content pr-[130px]">
             <div class="relative z-10">
                 <?php if(!empty(get_field('title_form_subscribe', 'options'))): ?>

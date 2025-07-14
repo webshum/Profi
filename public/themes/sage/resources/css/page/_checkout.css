@@ -1,10 +1,13 @@
-#billing_email_field {display: none;}
+#billing_email_field,
+.woocommerce-shipping-totals.shipping {display: none !important;}
 
 .woocommerce-checkout {
 	.page {
 		background: var(--gray);
 		padding: 50px 0 100px 0;
 	}
+
+	#ship-to-different-address {display: none;}
 
 	#customer_details {
 		display: grid;
@@ -56,6 +59,11 @@
 		&:hover {opacity: 0.5;}
 	}
 
+	.controls {
+		display: flex;
+		align-items: center;
+		gap: 0 20px;
+	}
 	.controls .button {margin-bottom: 0 !important;}
 
 	.button {color: #fff !important;}
@@ -123,17 +131,16 @@
 		}
 	}
 
+	@media (max-width: 1200px) {
+		#customer_details {gap: 0 30px;}	
+	}
+
 	@media (max-width: 991px) {
 		.page {padding: 70px 0 85px 0;}
 
-		#customer_details {
-		    gap: 50px;
-		    grid-template-columns: 1fr;
-		}
-
 		.woocommerce-billing-fields, 
 		.woocommerce-additional-fields {
-		    padding: 40px 60px 65px 60px;
+		    padding: 30px;
 		}
 
 		.woocommerce-billing-fields h3, 
@@ -148,9 +155,11 @@
 			width: 100%;
 			margin-left: 67px;
 		}
+
+		.controls .button {min-width: inherit;} 
 	}
 
-	@media (max-width: 700px) {
+	@media (max-width: 767px) {
 		.page {padding: 40px 0 65px 0;}
 
 		h4.title {font-size: 24px;}
@@ -159,6 +168,10 @@
 		form.checkout_coupon .form-row {
 		    width: 100%;
 		    .button {width: 100%;}
+		}
+
+		#customer_details {
+		    grid-template-columns: 1fr;
 		}
 
 		.woocommerce-billing-fields, 
@@ -185,6 +198,8 @@
 				margin-bottom: 20px !important;
 			}
 		}
+
+		.col-1, .col-2 {grid-column: initial;}
 	}
 }
 

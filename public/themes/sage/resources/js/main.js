@@ -51,7 +51,7 @@ if (document.querySelector('.product-tab .splide') != null) {
         arrows: false,
         gap: 0,
         mediaQuery: 'min',
-        autoplay: true,
+        // autoplay: true,
         breakpoints: {
             700: {
                 destroy: true
@@ -213,7 +213,6 @@ function popupColor() {
             view.src = image.src;
             src = image.src;
             title = e.target.closest('.item').querySelector('h4').textContent;
-            console.log(title);
             set();
         });
     });
@@ -226,26 +225,12 @@ function popupColor() {
         const image = document.createElement('img');
         image.src = src;
 
-        const inputColorTitle = document.createElement('input');
-        inputColorTitle.setAttribute('type', 'hidden');
-        inputColorTitle.setAttribute('name', 'color_name');
-        inputColorTitle.value = title;
-
-        const inputColorImage = document.createElement('input');
-        inputColorImage.setAttribute('type', 'hidden');
-        inputColorImage.setAttribute('name', 'color_image');
-        inputColorImage.value = src;
-
         if (viewMini.querySelector('img') != null) {
             viewMini.querySelector('img').src = src;
             document.querySelector('input[name="color_name"]').value = title;
             document.querySelector('input[name="color_image"]').value = src;
-        } else {
-            viewMini.appendChild(image);
-            document.querySelector('.cart').appendChild(inputColorTitle);
-            document.querySelector('.cart').appendChild(inputColorImage);
-        }
-
+        } 
+        
         if (window.innerWidth <= 700) {
             document.querySelector('.popup-overlay').classList.remove('active');
             document.querySelector('.popup-color').classList.remove('active');

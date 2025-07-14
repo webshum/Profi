@@ -132,6 +132,8 @@ function update_cart_qty() {
         
         if ($cart_item) {
             WC()->cart->set_quantity($item_key, $quantity);
+
+            WC()->cart->calculate_totals();
             
             $new_subtotal = wc_price($cart_item['data']->get_price() * $quantity);
             
@@ -262,6 +264,17 @@ function add_after_title_content() {
 
 add_action('woocommerce_single_product_summary', 'add_after_title_content', 5);
 
+add_action('woocommerce_before_add_to_cart_button', function () {
+    $color = get_field('color');
+    if (!empty($color)) {
+        $color_name = $color[0]['title'] ?? '';
+        $color_image = $color[0]['image']['url'] ?? '';
+
+        echo '<input type="hidden" name="color_name" value="' . esc_attr($color_name) . '">';
+        echo '<input type="hidden" name="color_image" value="' . esc_url($color_image) . '">';
+    }
+});
+
 /*
 |--------------------------------------------------------------------------
 | ADD CUSTOM FIELDS TO CART AND ORDER
@@ -295,7 +308,6 @@ function save_custom_field_to_order($item_id, $values, $cart_item_key) {
 }
 
 add_action('woocommerce_add_order_item_meta', 'save_custom_field_to_order', 10, 3);
-
 /*
 |--------------------------------------------------------------------------
 | AJAX FORM
@@ -343,6 +355,10 @@ function checkout_fields($fields){
     unset($fields['billing']['billing_postcode']);
     unset($fields['billing']['billing_country']);
     unset($fields['billing']['billing_state']);
+    unset($fields['billing']['billing_city']);
+    unset($fields['billing']['billing_first_name']);
+    unset($fields['billing']['billing_last_name']);
+    unset($fields['billing']['billing_phone']);
    
     // remove shipping fields 
     unset($fields['shipping']['shipping_first_name']);    
@@ -355,7 +371,6 @@ function checkout_fields($fields){
     unset($fields['shipping']['shipping_country']);
     unset($fields['shipping']['shipping_state']);
     
-    $fields['billing']['billing_city']['label'] = 'Місто / Село';
     $fields['billing']['billing_email']['default'] = 'admin@admin.com';
     return $fields;
 }
@@ -411,4 +426,8 @@ add_action('wp_ajax_nopriv_lazy_load_posts', 'lazy_load_posts');
 
 add_action('init', function() {
     require_once get_theme_file_path('resources/php-translations/wpml-register-strings.php');
+});
+
+add_action('init', function () {
+    load_plugin_textdomain('woocommerce', false, WP_LANG_DIR . '/plugins/');
 });

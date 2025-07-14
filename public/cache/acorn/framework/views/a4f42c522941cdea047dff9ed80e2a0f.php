@@ -3,7 +3,7 @@
 
 <footer id="footer" class="py-[90px]">
     <div class="center flex justify-between items-center gap-[50px]">
-        <div class="col-4">
+        <div class="column">
             <a href="/" class="footer-logo">
                 <svg width="267" height="48"><use xlink:href="#logo"></use></svg>
             </a>

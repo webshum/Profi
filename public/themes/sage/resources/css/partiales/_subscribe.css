@@ -1,6 +1,7 @@
 .subscribe {
     position: relative;
     overflow: hidden;
+    padding: 100px 0;
 
     .content {color: #fff;}
     .content h2.title {
@@ -59,9 +60,12 @@
     }
 
     @media (max-width: 991px) {
+        padding-top: 0;
+        padding-bottom: 0;
+
         .center {
-            grid-template-columns: 1fr;
             padding: 0 !important;
+            grid-template-columns: 1fr;
         }
 
         .content {

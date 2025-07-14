@@ -8,6 +8,10 @@ namespace App;
 
 use Illuminate\Support\Facades\Vite;
 
+require_once __DIR__ . '/API.php';
+require_once __DIR__ . '/NovaPoshtaAPI.php';
+require_once __DIR__ . '/WC_Shipping_NovaPoshta.php';
+
 /**
  * Inject styles into the block editor.
  *
